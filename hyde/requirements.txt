@@ -1,0 +1,5 @@
+django
+pyYAML
+markdown
+cherrypy
+cssmin

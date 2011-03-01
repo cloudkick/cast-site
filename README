@@ -1,0 +1,11 @@
+Cast Project Website
+
+Step 1) Install Hyde and related tools:
+
+ $ make setup
+
+Step 2) Build site:
+ $ make build
+
+Step 2.5) Run server for testing:
+ $ make run
