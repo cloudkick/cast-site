@@ -1,23 +1,24 @@
 {% extends "skeleton/_body.html" %}
 
 {%hyde
-    title: "Hyde : Ready for customization"
+    title: "Modernize your Deployment Workflow"
     created: 2009-02-01 18:09:05
     listing: True
 %}
 
 {% block content_body %}
-
-<h2>Recent Posts</h2>
-
-	{%recent_posts recents 5 %}
-
-	<ul>
-		{%for post in recents %}
-			<li>
-				<a href='{{post.url}}'>{{post.title}}</a>
-			</li>
-		{%endfor%}
-	</ul>
-
+<ul>
+  <li>
+    <a href="/docs/client/bundles/">Speed</a>
+    <p>Deploy or update your application in seconds</p>
+  </li>
+  <li>
+    <a href="/docs/client/instances/">Rollbacks</a>
+    <p>Roll back your application as easily as you upgraded it</p>
+  </li>
+  <li>
+    <a href="/docs/agent/ssl/">Security</a>
+    <p>All traffic is encrypted and authenticated by default</p>
+  </li>
+</ul>
 {%endblock%}
