@@ -28,7 +28,7 @@ GENERATE_ABSOLUTE_FS_URLS = False
 # to map the clean urls to the actual html files.  The HtaccessGenerator site
 # post processor is capable of automatically generating the necessary
 # RewriteRules for use with Apache.
-GENERATE_CLEAN_URLS = False
+GENERATE_CLEAN_URLS = True
 
 # A list of filenames (without extensions) that will be considered listing
 # pages for their enclosing folders.
@@ -37,7 +37,7 @@ LISTING_PAGE_NAMES = ['listing', 'index', 'default']
 
 # Determines whether or not to append a trailing slash to generated urls when
 # clean urls are enabled.
-APPEND_SLASH = False
+APPEND_SLASH = True
 
 # {folder : extension : (processors)}
 # The processors are run in the given order and are chained.
