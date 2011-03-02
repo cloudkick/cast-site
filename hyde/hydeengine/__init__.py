@@ -192,7 +192,8 @@ class Server(object):
             'tools.staticdir.dir':os.path.join(deploy_folder.path,
                                                settings.SITE_ROOT.strip('/'),
                                                'media'),
-            'tools.staticdir.on':True
+            'tools.staticdir.on':True,
+            'tools.staticdir.index': 'index.html'
             }}
         else:
             conf = {'/': {
