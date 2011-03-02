@@ -1,5 +1,4 @@
-
-
+default: build
 
 setup: hyde/requirements.txt
 	pip install -r hyde/requirements.txt
