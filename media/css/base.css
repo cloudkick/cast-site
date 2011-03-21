@@ -3,14 +3,15 @@ body { padding:0; margin:0; color:#555; font:1em/1.6em  "Helvetica Neue", Helvet
 
 h1,h2,h3,h4,h5,h6 { color:#fff; text-shadow:#888 0 0 .15em; font-weight:200; padding-bottom:.25em; margin-top:.5em; } 
 h1 { font-size:3.0em; margin-top:0; }
-h2 { font-size:2.0em; }
-h3 { font-size:1.8em; }
+h2 { font-size:2.2em; }
+h3 { font-size:1.6em; margin-bottom:.5em; }
 h4 { font-size:1.4em; }
 h5 { font-size:1.2em; }
 h6 { font-size:1.0em; font-weight:600; }
 
 ul,ol { margin:0; }
 a { color:#dfff8e; text-shadow:#888 0 0 .15em; }
+strong { font-weight: bolder; }
 
 #site { margin:2em auto; width:50em; min-height:25em; position:relative; }
 
@@ -36,6 +37,14 @@ a { color:#dfff8e; text-shadow:#888 0 0 .15em; }
 .context-nav a { }
 
 #content-header { padding:.5em 0; }
+
+.highlight pre {
+  border: 2px solid #888;
+  margin: 0;
+  padding: 3px;
+  line-height: 1.4em;
+  overflow: auto;
+}
 
 .post-date{ float:right; font-style:italic; font-size:.8em; }
 
