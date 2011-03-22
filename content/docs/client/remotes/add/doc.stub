@@ -1,0 +1,46 @@
+{% markdown %}
+Add a reference to a remote cast-agent
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast remotes add [OPTIONS] NAME URL 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__NAME__
+
+A name for the remote
+
+__URL__
+
+The URL to the remote
+
+
+### Options
+
+__--default__, __-d__
+
+Make this remote the default. Up to one default remote may be specified for
+each project, as well as one global default. If another default already exists,
+this will become the default instead.
+
+__--overwrite__, __-o__
+
+Use this option if you want to overwrite an existing remote.
+
+__--project__, __-p__
+
+Add the remote only to the current project. This will override any global
+remote with the same name, and a default project remote, if one exists, will
+take precedent over the global one.
+
+__--accept__, __-y__
+
+Accept the remote certificate without prompting. This is almost certainly a bad
+idea.
+
+{% endmarkdown %}

@@ -1,0 +1,27 @@
+{% markdown %}
+Delete an existing remote.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast remotes delete [OPTIONS] NAME 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__NAME__
+
+A name for the remote
+
+
+### Options
+
+__--project__, __-p__
+
+Add the remote only to the current project. This will override any global
+remote with the same name, and a default project remote, if one exists, will
+take precedent over the global one.
+
+{% endmarkdown %}

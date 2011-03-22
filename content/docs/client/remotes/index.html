@@ -1,0 +1,20 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast Client - Remote Management"
+    created: 2011-03-01
+    listing: True
+%}
+
+{% block content_body %}
+{% markdown %}
+The 'cast remotes' command allows you to manage your local 'remotes' files.
+Cast uses 'remotes' in much the way that git does - the main difference is that
+cast allows you to specify remotes for each project as well as a set of global
+remotes. This allows you to, for example, have a unique 'dev' remote for each
+of your projects.
+{% endmarkdown %}
+
+{% include "docs/client/remotes/doc.stub" %}
+{% endblock %}
+

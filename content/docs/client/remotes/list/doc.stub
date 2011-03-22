@@ -1,0 +1,11 @@
+{% markdown %}
+Print a list of saved remotes.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast remotes list 
+{% endsyntax %}
+{% markdown %}
+{% endmarkdown %}

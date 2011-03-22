@@ -1,0 +1,18 @@
+{% markdown %}
+Set a default remote which will be used with all the commands
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast remotes set-default NAME 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__NAME__
+
+Remote name
+
+{% endmarkdown %}
