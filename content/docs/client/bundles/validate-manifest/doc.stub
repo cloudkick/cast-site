@@ -1,0 +1,18 @@
+{% markdown %}
+Validates that the cast.json manifest files contains all the required fields.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast bundles validate-manifest PATH 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__PATH__
+
+Path to the directory containing the cast.json file
+
+{% endmarkdown %}

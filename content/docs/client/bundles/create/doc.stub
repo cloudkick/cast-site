@@ -1,0 +1,32 @@
+{% markdown %}
+Create an application bundle. If you don't specify the app or bundle path, the
+current working directory is used.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast bundles create [OPTIONS] VERSION [APPPATH]
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__VERSION__
+
+Application version number
+
+
+### Optional Arguments
+
+__APPPATH__
+
+Path to folder containing the cast.json file and your application files
+
+
+### Options
+
+__--upload__, __-u__
+
+Upload a bundle to the server after it is created
+{% endmarkdown %}

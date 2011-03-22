@@ -1,0 +1,24 @@
+{% markdown %}
+Upload an application bundle to a remote server.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast bundles upload [OPTIONS] [VERSION]
+{% endsyntax %}
+{% markdown %}
+
+### Optional Arguments
+
+__VERSION__
+
+The bundle version to upload, defaults to the newest available
+
+
+### Options
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+{% endmarkdown %}

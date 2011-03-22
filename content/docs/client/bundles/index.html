@@ -3,7 +3,7 @@
 {%hyde
     title: "Cast Client - Bundle Management"
     created: 2011-03-01
-    listing: True
+    listing: False
 %}
 
 {% block content_body %}
@@ -12,5 +12,7 @@ The 'bundles' sub-command allows you to create, upload and manage application
 bundles. A bundle is simply a tarball of your application, including a manifest
 file that instructs the cast agent on the details of the deployment.
 {% endmarkdown %}
+
+{% include "docs/client/bundles/doc.stub" %}
 {% endblock %}
 

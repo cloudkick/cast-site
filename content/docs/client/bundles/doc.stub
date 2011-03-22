@@ -1,0 +1,10 @@
+{% markdown %}
+
+### Sub-Commands
+
+* [List]({{ page.url }}list)
+* [Create]({{ page.url }}create)
+* [Validate-manifest]({{ page.url }}validate-manifest)
+* [Upload]({{ page.url }}upload)
+
+{% endmarkdown %}

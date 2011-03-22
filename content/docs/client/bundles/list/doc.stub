@@ -1,0 +1,17 @@
+{% markdown %}
+List all the bundles which are currently deployed.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast bundles list [OPTIONS] 
+{% endsyntax %}
+{% markdown %}
+
+### Options
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+{% endmarkdown %}
