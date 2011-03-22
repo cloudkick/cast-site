@@ -1,0 +1,11 @@
+{% markdown %}
+Display Cast client inforation (version, website, etc.).
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast info 
+{% endsyntax %}
+{% markdown %}
+{% endmarkdown %}

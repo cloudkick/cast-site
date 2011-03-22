@@ -1,0 +1,11 @@
+{% markdown %}
+Print the version
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast version 
+{% endsyntax %}
+{% markdown %}
+{% endmarkdown %}

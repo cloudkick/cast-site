@@ -1,0 +1,48 @@
+{% markdown %}
+Create a simple manifest file by answering a series of questions. Optionally
+specify manifest parameters from the command line.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast init [OPTIONS] ENTRYFILE 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__ENTRYFILE__
+
+The entry file of the application
+
+
+### Options
+
+__--apppath__ &lt;path&gt;, __-a__ &lt;path&gt;
+
+Path to the root of the application
+
+__--name__ &lt;name&gt;, __-n__ &lt;name&gt;
+
+The name of the application.
+
+__--type__ &lt;type&gt;, __-t__ &lt;type&gt;
+
+Specify the type of the applicaton. Available types are 'nodejs' and 'shell'
+
+__--template__ &lt;file&gt;
+
+Specify files that should be rendered as templates during deployment. Use once
+for each file to be templated.
+
+__--datafile__ &lt;file&gt;, __-d__ &lt;file&gt;
+
+Specify files that may be programatically modified during  operation of the
+application. These will not be replaced during upgrades
+
+__--force__, __-f__
+
+Replace an existing manifest file.
+
+{% endmarkdown %}
