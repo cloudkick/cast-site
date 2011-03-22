@@ -3,18 +3,16 @@
 {%hyde
     title: "Cast Client Manual"
     created: 2011-03-01
-    listing: True
+    listing: False
 %}
 
 {% block content_body %}
 {% markdown %}
-The cast client is a command line utility that allows you to interact with your server
-in order to upload application bundles...
-
-* [Remotes](/docs/client/remotes/)
-* [Bundles](/docs/client/bundles/)
-* [Instances](/docs/client/instances/)
-* [Services](/docs/client/services/)
+The cast client is a command line utility that allows you to interact with your
+server in order to upload application bundles, create new instances of your
+applications, then manage services associated with those instances.
 {% endmarkdown %}
+
+{% include "docs/client/doc.stub" %}
 {% endblock %}
 

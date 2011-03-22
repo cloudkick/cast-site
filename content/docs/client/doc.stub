@@ -1,0 +1,13 @@
+{% markdown %}
+
+### Commands
+
+* [Info]({{ page.url }}info)
+* [Version]({{ page.url }}version)
+* [Init]({{ page.url }}init)
+* [Bundles]({{ page.url }}bundles)
+* [Instances]({{ page.url }}instances)
+* [Services]({{ page.url }}services)
+* [Remotes]({{ page.url }}remotes)
+
+{% endmarkdown %}
