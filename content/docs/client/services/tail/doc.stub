@@ -1,0 +1,37 @@
+{% markdown %}
+Print a log file for a specified service. If a --follow switch is provided, new
+data is printed as soon as it is available.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast services tail [OPTIONS] NAME [BYTES]
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__NAME__
+
+Service name
+
+
+### Optional Arguments
+
+__BYTES__
+
+How many bytes from the end of the log file to print
+
+
+### Options
+
+__--follow__, __-F__
+
+Output new data as some as it is available (aka tail -F)
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+
+{% endmarkdown %}

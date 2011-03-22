@@ -1,0 +1,25 @@
+{% markdown %}
+Stop a service on the specified remote
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast services stop [OPTIONS] NAME 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__NAME__
+
+The name of the service to stop
+
+
+### Options
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+
+{% endmarkdown %}

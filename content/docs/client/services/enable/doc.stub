@@ -1,0 +1,25 @@
+{% markdown %}
+Enable a service on the specified remote
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast services enable [OPTIONS] NAME 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__NAME__
+
+The name of the service to enable
+
+
+### Options
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+
+{% endmarkdown %}

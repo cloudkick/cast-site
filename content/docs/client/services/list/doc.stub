@@ -1,0 +1,18 @@
+{% markdown %}
+Print a list of available services.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast services list [OPTIONS] 
+{% endsyntax %}
+{% markdown %}
+
+### Options
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+
+{% endmarkdown %}

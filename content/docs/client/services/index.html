@@ -1,0 +1,17 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast Client - Service Management"
+    created: 2011-03-01
+    listing: True
+%}
+
+{% block content_body %}
+{% markdown %}
+The 'cast services' command allows you to manage services associated with
+instances of applications on your server.
+{% endmarkdown %}
+
+{% include "docs/client/services/doc.stub" %}
+{% endblock %}
+
