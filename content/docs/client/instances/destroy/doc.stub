@@ -1,0 +1,25 @@
+{% markdown %}
+Destroy an instance and all of its data and services.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast instances destroy [OPTIONS] NAME 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__NAME__
+
+The name of the instance to be destroyed
+
+
+### Options
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+
+{% endmarkdown %}

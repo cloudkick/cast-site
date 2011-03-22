@@ -1,0 +1,9 @@
+{% markdown %}
+
+### Sub-Commands
+
+* [Create]({{ page.url }}create)
+* [Destroy]({{ page.url }}destroy)
+* [List]({{ page.url }}list)
+
+{% endmarkdown %}
