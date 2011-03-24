@@ -1,0 +1,181 @@
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+	<head>
+
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<title>
+			
+			Cast Project : developer-information : Coding Guidelines
+			
+		</title>
+
+		
+
+		<link href="/blog/atom.xml" rel="alternate" title="Cast Project" type="application/atom+xml"/>
+
+		
+
+		
+
+		<link rel="stylesheet" href="/media/css/reset.css" type="text/css" media="screen" charset="utf-8">
+		<link rel="stylesheet" href="/media/css/base.css" type="text/css" media="screen" charset="utf-8">
+		<link rel="stylesheet" href="/media/css/syntax.css" type="text/css" media="screen" charset="utf-8">
+
+		
+		
+		
+		
+		
+		
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+
+		
+		
+		
+		
+
+	</head>
+
+	<body>
+
+		<div id="site">	
+
+			<div id="header">
+  <a href="/index.html">
+    <h1><img src="/media/images/cast_logo.png" id="site-logo" /> Cast Project</h1>
+  </a>
+</div>
+
+
+
+
+
+
+
+
+<div id="sitenav">
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>    
+
+        
+			<li>
+				<a href="/contributing/">
+					Contributing
+				</a>
+			</li>
+        
+			<li class="selected" >
+				<a href="/developer-information/">
+					Developer Information
+				</a>
+			</li>
+        
+			<li>
+				<a href="/docs/">
+					Docs
+				</a>
+			</li>
+        
+    </ul>
+</div>
+
+
+
+
+
+
+
+<ul class="breadcrumbs">
+	
+		<li>
+			<a href="/">Cast Project</a>
+
+			
+				
+				<span class="separator">&raquo;</span>
+				
+			
+		</li>
+	
+		<li>
+			<a href="/developer-information/">Developer Information</a>
+
+			
+				
+				<span class="separator">&raquo;</span>
+				
+			
+		</li>
+	
+		<li>
+			<a href="/developer-information/coding-guidelines/">Coding Guidelines</a>
+
+			
+		</li>
+	
+</ul>
+    
+
+
+
+
+			
+
+
+<div id="content-header"><h2>Coding Guidelines</h2></div>
+
+
+
+  <p>We know that different people like different styles, but we also know
+that the consistency is very important and that is why we enforce
+strict coding style. <br /><br /></p>
+<p>Some of the rules are automatically enforced by jslint and other are manually
+checked when doing code reviews. <br /><br /></p>
+<p>Cast styling guide is largely based on the <a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google JavaScript styling guide</a>,
+but there are some additions, exceptions and differences which are documented bellow.</p>
+<h3>Cast Styling Guide</h3>
+<ul>
+<li>Always refer to the error variable which is passed to the callback as <code>err</code></li>
+<li>Always refer to the callback function as <code>callback</code></li>
+<li>Use dot notation (<code>person.height</code>) when accessing instances attributes, but use
+dictionary notation (<code>config['port_number']</code>) when the object is used as a
+hash-table / dictionary</li>
+<li>camelCase notation is used almost every where. Only exception to this rule are
+constants, POST body values and the object key names in places where the object
+is used as a hash-table / dictionary. In this places we use underscore-separated
+notation. <br /><br /></li>
+</ul>
+<p><strong>Example #1:</strong></p>
+<div class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">querystring</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><br />    <span class="nx">bundle_name</span><span class="o">:</span> <span class="nx">bundleName</span><span class="p">,</span><br />    <span class="nx">bundle_version</span><span class="o">:</span> <span class="nx">bundleVersion</span><br /><span class="p">});</span><br /><span class="p">...</span><br /><span class="nx">request</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span><br /></pre></div><br /></div>
+
+<p>In this case, underscore-separated notation is used, because the values are sent
+in the POST body.<br /><br /></p>
+<p><strong>Example #2:</strong></p>
+<div class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">COMMON_FIELDS</span> <span class="o">=</span> <span class="p">{</span><br />  <span class="s1">&#39;entry_file&#39;</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="o">:</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span><br />                 <span class="s1">&#39;required&#39;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span><br />                 <span class="s1">&#39;description&#39;</span><span class="o">:</span> <span class="s1">&#39;Script or file which is run when starting the application&#39;</span><span class="p">}</span><br />  <span class="p">}</span><br /><span class="p">}</span><br />&nbsp;<br /><span class="kd">var</span> <span class="nx">entry_file</span> <span class="o">=</span> <span class="nx">COMMON_FIELDS</span><span class="p">[</span><span class="s1">&#39;entry_file&#39;</span><span class="p">];</span><br /></pre></div><br /></div>
+
+<p>In this case, underscore-separated notation is used because the object is used as
+a dictionary.</p>
+
+
+
+
+			<div id='footer'>Copyright Cast Project</div>
+
+
+		</div>
+
+	</body>
+
+</html>
+
