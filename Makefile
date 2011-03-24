@@ -10,3 +10,4 @@ build:
 run:
 	python hyde/hyde.py -w -s .
 
+.PHONY: build
