@@ -1,0 +1,60 @@
+{% extends "skeleton/_body_md.html" %}
+
+{%hyde
+    title: "Contributing to Cast"
+    navname: "Contributing"
+    created: 2011-03-24
+%}
+
+{% block content_md %}
+
+Cast is an open-source project released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) 
+license so everyone is encouraged and welcome to contribute.<br /><br />
+
+We accept many different kinds of contributions (code, tests, documentation,
+ideas, ..)
+which means that almost anyone is qualified to contribute.<br /><br />
+
+If you need more information you are always welcome to join us on IRC or
+start a new thread on our mailing list where we are happy to help you!
+
+### Guidelines and rules for contributing
+
+* If you are about to implement a new feature or a bigger change, start a
+discussion on our [mailing list][3] first.
+
+* Open a new issue on our [issue tracker][2] for every change.
+
+* Create a new branch for every change, even if it is a one line bug fix (git
+makes branching cheap and easy). Branch name should be in the following format: 
+`<ticket_id>_branch_name`
+
+* Every change must contain tests. Test coverage of 90% and above is preferred.
+
+* Stick to the [Coding Guidelines][1].
+
+* After you are done with your change make sure that all the tests still pass.
+
+* After you think your modifications are ready, open a pull request on Github so
+others can review your code and provider further feedback.
+
+### Vagrant Development Image
+
+To make participation and development easier we have created a [Vagrant][] image
+which contains everything required for you to start developing.
+
+For more information about getting and using the Vagrant image, please see
+Using Vagrant for development page (the whole process of downloading and setting
+up the image is very easy and straight-forward and it should not take more than
+10 minutes).
+
+### Coding Guidelines
+
+For coding guidelines, please see ["Coding Guidelines"](/coding-guidelines/) page.
+
+[Vagrant]: http://vagrantup.com
+[1]: /developer-information/coding-guidelines/
+[2]: https://github.com/cloudkick/cast/issues
+[3]: https://groups.google.com/forum/#!forum/cast-dev
+
+{% endblock %}
