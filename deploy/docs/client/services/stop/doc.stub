@@ -1,0 +1,11 @@
+<p>Stop a service on the specified remote</p>
+<h3>Synopsis</h3>
+<div class="highlight"><pre>cast services stop [OPTIONS] NAME 
+</pre></div>
+
+<h3>Required Arguments</h3>
+<p><strong>NAME</strong></p>
+<p>The name of the service to stop</p>
+<h3>Options</h3>
+<p><strong>--remote</strong> &lt;remote&gt;, <strong>-r</strong> &lt;remote&gt;</p>
+<p>The remote to use for this command</p>

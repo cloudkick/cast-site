@@ -1,0 +1,11 @@
+<p>Upload an application bundle to a remote server.</p>
+<h3>Synopsis</h3>
+<div class="highlight"><pre>cast bundles upload [OPTIONS] [VERSION]
+</pre></div>
+
+<h3>Optional Arguments</h3>
+<p><strong>VERSION</strong></p>
+<p>The bundle version to upload, defaults to the newest available</p>
+<h3>Options</h3>
+<p><strong>--remote</strong> &lt;remote&gt;, <strong>-r</strong> &lt;remote&gt;</p>
+<p>The remote to use for this command</p>

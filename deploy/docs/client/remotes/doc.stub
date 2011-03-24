@@ -1,0 +1,7 @@
+<h3>Sub-Commands</h3>
+<ul>
+<li><a href="/docs/client/remotes/doc.stub/add">Add</a></li>
+<li><a href="/docs/client/remotes/doc.stub/delete">Delete</a></li>
+<li><a href="/docs/client/remotes/doc.stub/list">List</a></li>
+<li><a href="/docs/client/remotes/doc.stub/set-default">Set-default</a></li>
+</ul>

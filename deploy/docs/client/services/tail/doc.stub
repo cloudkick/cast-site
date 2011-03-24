@@ -1,0 +1,17 @@
+<p>Print a log file for a specified service. If a --follow switch is provided, new
+data is printed as soon as it is available.</p>
+<h3>Synopsis</h3>
+<div class="highlight"><pre>cast services tail [OPTIONS] NAME [BYTES]
+</pre></div>
+
+<h3>Required Arguments</h3>
+<p><strong>NAME</strong></p>
+<p>Service name</p>
+<h3>Optional Arguments</h3>
+<p><strong>BYTES</strong></p>
+<p>How many bytes from the end of the log file to print</p>
+<h3>Options</h3>
+<p><strong>--follow</strong>, <strong>-F</strong></p>
+<p>Output new data as some as it is available (aka tail -F)</p>
+<p><strong>--remote</strong> &lt;remote&gt;, <strong>-r</strong> &lt;remote&gt;</p>
+<p>The remote to use for this command</p>

@@ -1,0 +1,6 @@
+<h3>Sub-Commands</h3>
+<ul>
+<li><a href="/docs/client/instances/doc.stub/create">Create</a></li>
+<li><a href="/docs/client/instances/doc.stub/destroy">Destroy</a></li>
+<li><a href="/docs/client/instances/doc.stub/list">List</a></li>
+</ul>

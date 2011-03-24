@@ -1,0 +1,10 @@
+<h3>Sub-Commands</h3>
+<ul>
+<li><a href="/docs/client/services/doc.stub/list">List</a></li>
+<li><a href="/docs/client/services/doc.stub/enable">Enable</a></li>
+<li><a href="/docs/client/services/doc.stub/disable">Disable</a></li>
+<li><a href="/docs/client/services/doc.stub/start">Start</a></li>
+<li><a href="/docs/client/services/doc.stub/stop">Stop</a></li>
+<li><a href="/docs/client/services/doc.stub/restart">Restart</a></li>
+<li><a href="/docs/client/services/doc.stub/tail">Tail</a></li>
+</ul>

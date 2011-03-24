@@ -1,0 +1,8 @@
+<p>List all the bundles which are currently deployed.</p>
+<h3>Synopsis</h3>
+<div class="highlight"><pre>cast bundles list [OPTIONS] 
+</pre></div>
+
+<h3>Options</h3>
+<p><strong>--remote</strong> &lt;remote&gt;, <strong>-r</strong> &lt;remote&gt;</p>
+<p>The remote to use for this command</p>

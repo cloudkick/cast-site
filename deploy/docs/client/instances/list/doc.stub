@@ -1,0 +1,8 @@
+<p>Print a list of instances that exist on the remote.</p>
+<h3>Synopsis</h3>
+<div class="highlight"><pre>cast instances list [OPTIONS] 
+</pre></div>
+
+<h3>Options</h3>
+<p><strong>--remote</strong> &lt;remote&gt;, <strong>-r</strong> &lt;remote&gt;</p>
+<p>The remote to use for this command</p>

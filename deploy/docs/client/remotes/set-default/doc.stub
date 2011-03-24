@@ -1,0 +1,8 @@
+<p>Set a default remote which will be used with all the commands</p>
+<h3>Synopsis</h3>
+<div class="highlight"><pre>cast remotes set-default NAME 
+</pre></div>
+
+<h3>Required Arguments</h3>
+<p><strong>NAME</strong></p>
+<p>Remote name</p>
