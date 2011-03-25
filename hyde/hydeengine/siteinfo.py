@@ -172,6 +172,23 @@ class SiteNode(object):
         return str(self.folder)
 
     @property
+    def level(self, include_top_level=False):
+        level = -1 if not include_top_level else 0
+
+        parent = self.parent
+        while parent:
+            level +=1
+            parent = parent.parent
+
+        return level
+
+    @property
+    def level_list(self):
+        # for loop in templates can only be used on sequences.
+        level_list = [ True for x in range(0, self.level)]
+        return level_list
+
+    @property
     def simple_dict(self):
         ress = []
         for resource in self.walk_resources():
