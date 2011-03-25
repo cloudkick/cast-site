@@ -46,7 +46,7 @@ blockquote { color:#fff; font-style:italic; margin:.5em 2em .5em 1em; padding:0 
 .context-nav { position:absolute; right:0; }
 .context-nav a { }
 
-#content-header { padding:.5em 0; }
+#content-header { padding:0 0 .5em 0; }
 
 .post-date{ float:right; font-style:italic; font-size:.8em; }
 
