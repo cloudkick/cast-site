@@ -12,10 +12,11 @@ h6 { font-size:1.0em; font-weight:600; }
 ul,ol { margin-left:1.25em; }
 ul { list-style-type: circle; }
 ol { list-style-type: decimal; }
-a { color:#597180; /*text-shadow:#888 0 0 .15em; font-weight:600;*/ }
+a { color:#597180; }
 a:hover, 
 .breadcrumbs a:hover,
 #sitenav a { color:#e9ffb2; }
+#sitenav a { text-shadow:#888 0 0 .15em; }
 
 code, pre { font-family:menlo, courier new, monospace; }
 code {  background:#bbb; padding:0 .25em; margin:0 .25em; }
