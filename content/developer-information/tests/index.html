@@ -1,0 +1,88 @@
+{% extends "skeleton/_body_md.html" %}
+
+{%hyde
+    title: "Tests"
+    navname: "Tests"
+    created: 2011-03-24
+%}
+
+{% block content_md %}
+
+For the Cast tests we use a custom written test runner which runs every test file in
+a separate process.<br /><br />
+
+Tests are logically grouped in a file and each test is wrapped inside an anonymous
+function (similar to the Node tests).<br /><br />
+
+Because tests are wrapped inside anonymous function you are encouraged to write
+a short comment about what the test does above this function.<br /><br />
+
+Here is an example test taken from the hooks test file (`test/simple/hooks.js`):
+
+{% syntax javascript %}
+// Test success (exit code == 0)
+(function() {
+  var n = 0;
+
+  var callback = function(err, killed, stdout, stderr) {
+    assert.ifError(err);
+    assert.ok(!killed);
+
+    assert.equal('test hook success stdout', stdout);
+    assert.equal('test hook success stderr', stderr);
+
+    n++;
+  };
+
+  var hook_file = 'hook_success.js';
+  var base_hook = new hooks.Hook('pre', hook_file,
+                                  path.join(hooks_path, hook_file),
+                                  false);
+  var instance_hook = new hooks.InstanceHook('pre', hook_file,
+                                             instance_version_path);
+  base_hook.execute(null, [], callback);
+  instance_hook.execute(null, [], callback);
+
+  process.on('exit', function() {
+    assert.equal(n, 2, 'Tests completed');
+  });
+})();{% endsyntax %}
+
+To run all the tests, issue the following command in the Cast root folder:<br /><br />
+
+{% syntax console %}
+scons test
+{% endsyntax %}
+
+If all the tests pass, you should see an output similar to the one bellow:<br /><br />
+
+{% syntax console %}
+vagrant@vagrantup:/data/cast$ scons test
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+/usr/local/bin/node tests/run.js --verbosity 2 --tests 'tests/integration/test-basic-client.js tests/simple/ck-agent-service.js tests/simple/command-parser.js'
+Running test: test-basic-client.js
+Running test: ck-agent-service.js
+Running test: command-parser.js
+==================== Tests Complete ====================
+    Successes: 19
+     - integration/test-basic-client.js
+     - simple/ck-agent-service.js
+     - simple/command-parser.js
+     Failures: 0
+    ------------------
+        Total: 19
+scons: done building targets.
+{% endsyntax %}
+
+If you don't want to run all the tests, you can pass a comma separated list of
+relative paths to the tests files to scons test target: <br /><br />
+
+{% syntax console %}
+scons test tests="tests/simple/util-version.js tests/simple/util-templates.js"
+{% endsyntax %}
+
+This will run all the tests in file `tests/simple/util-version.js` and
+`tests/simple/util-templates.js`.
+{% endblock %}
