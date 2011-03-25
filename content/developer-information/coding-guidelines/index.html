@@ -21,11 +21,75 @@ but there are some additions, exceptions and differences which are documented be
 
 ### Cast Styling Guide
 
-* Always refer to the error variable which is passed to the callback as `err`
-* Always refer to the callback function as `callback`
-* Use dot notation (`person.height`) when accessing instances attributes, but use
-dictionary notation (`config['port_number']`) when the object is used as a
-hash-table / dictionary
+* Always refer to the error variable which is passed to the callback as `err`<br /><br />
+
+
+**Example:**
+
+{% syntax javascript %}
+var on_result(err, result) {
+  if (err) {
+    console.log('Error happened!');
+    return;
+  }
+}
+{% endsyntax %}
+
+* Always refer to the callback function as `callback`<br /><br />
+
+
+**Example:**
+
+{% syntax javascript %}
+var createNewInstance = function(name, count, path, callback) {
+...
+}
+{% endsyntax %}
+
+* Always put return statement on a separate line<br /><br />
+
+
+**Good:**
+
+{% syntax javascript %}
+var on_result(err, result) {
+  if (err) {
+    console.log('Error happened!');
+    return;
+  }
+}
+{% endsyntax %}
+
+**Bad:**
+
+{% syntax javascript %}
+var on_result(err, result) {
+  if (err) {
+    return console.log('Error happened!');
+  }
+}
+{% endsyntax %}
+
+* Use dot notation when accessing instances attributes, but use dictionary 
+notation when the object is used as a hash-table / dictionary<br /><br />
+
+**Example (dot notation):**
+
+{% syntax javascript %}
+var person = new Person('foo', 'bar', '180');
+var height = person.height;
+{% endsyntax %}
+
+**Example (dictionary notation):**
+
+{% syntax javascript %}
+var config = {
+  'port_number': 12345
+};
+var port = config['port_number'];
+{% endsyntax %}
+
+
 * camelCase notation is used almost every where. Only exception to this rule are
 constants, POST body values and the object key names in places where the object
 is used as a hash-table / dictionary. In this places we use underscore-separated
