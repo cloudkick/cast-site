@@ -6,15 +6,27 @@
     <ul>
         <li{% ifequal page.module site.module %} class="selected" {% endifequal %}>
             <a href="{{site.listing_url}}">Home</a>
-        </li>    
+        </li>
 
-        {% for module in site.children %}
-			<li{% ifequal page.module module %} class="selected" {% endifequal %}>
-				<a href="{{module.listing_url}}">
-					{{module.name|unslugify}}
-				</a>
-			</li>
-        {% endfor %}
+        <li{% ifequal page.module.name "start" %} class="selected" {% endifequal %}>
+            <a href="/start/">Get Started</a>
+        </li>
+
+        <li{% ifequal page.module.name "docs" %} class="selected" {% endifequal %}>
+            <a href="/docs/">Documentation</a>
+        </li>
+
+        <li{% ifequal page.module.name "developer-information" %} class="selected" {% endifequal %}>
+            <a href="/developer-information/">Developers</a>
+        </li>
+
+        <li{% ifequal page.module.name "about" %} class="selected" {% endifequal %}>
+            <a href="/about/">About</a>
+        </li>
+
+        <li{% ifequal page.module.name "sitemap" %} class="selected" {% endifequal %}>
+            <a href="/sitemap/">Sitemap</a>
+        </li>
     </ul>
 </div>
 
