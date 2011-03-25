@@ -1,0 +1,13 @@
+{% extends "skeleton/_body_md.html" %}
+
+{%hyde
+    title: "Sitemap"
+    created: 2009-02-01 18:09:05
+    listing: False
+%}
+
+{% block content_md %}
+{% for page in site.walk %}
+{% for level in page.level_list %}    {% endfor %}* [{{ page.name|unslugify }}]({{ page.listing_url}})
+{% endfor %}
+{% endblock %}
