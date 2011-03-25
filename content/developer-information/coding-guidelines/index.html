@@ -26,11 +26,12 @@ but there are some additions, exceptions and differences which are documented be
 **Example:**
 
 {% syntax javascript %}
-var on_result(err, result) {
+var onResult = function(err, result) {
   if (err) {
     console.log('Error happened!');
     return;
   }
+  /* Success code path, process result here */
 }
 {% endsyntax %}
 
