@@ -1,7 +1,7 @@
 html { background:#ccc; }
 body { padding:0; margin:0; color:#444; font:1em/1.6em "Helvetica Neue", Helvetica, Arial, sans-serif; text-rendering:optimizeLegibility; }
 
-h1,h2,h3,h4,h5,h6 { color:#fff; text-shadow:#888 0 0 .1em; font-weight:300; padding-bottom:.25em; margin-top:.5em; } 
+h1,h2,h3,h4,h5,h6 { color:#fff; text-shadow:#888 0 0 .1em; font-weight:300; padding-bottom:.25em; margin-top:.5em; }
 h1 { font-size:3.0em; margin-top:0; }
 h2 { font-size:2.2em; }
 h3 { font-size:1.6em; margin-top:.75em; margin-bottom:.5em; }
@@ -10,10 +10,10 @@ h5 { font-size:1.2em; }
 h6 { font-size:1.0em; font-weight:600; }
 
 ul,ol { margin-left:1.25em; }
-ul { list-style-type: circle; }
+ul { list-style-type: square; }
 ol { list-style-type: decimal; }
 a { color:#597180; /*text-shadow:#888 0 0 .15em; font-weight:600;*/ }
-a:hover, 
+a:hover,
 .breadcrumbs a:hover,
 #sitenav a { color:#e9ffb2; }
 
@@ -23,7 +23,6 @@ pre { padding:.75em; line-height:1.2em; }
 .highlight { overflow:auto; font-size: 12px; border-radius:.5em; -moz-border-radius:.5em; -webkit-box-shadow:#fff 0 0 .5em; -moz-box-shadow:#fff 0 0 .5em; }
 .highlight pre {}
 strong { font-weight: bold; }
-=======
 blockquote { font-size: 12px;color:#fff; font-style:italic; margin:.5em 2em .5em 1em; padding:0 0 0 1em; border-left:.25em solid #ddd; }
 
 #site { margin:2em auto; width:50em; min-height:25em; position:relative; }
