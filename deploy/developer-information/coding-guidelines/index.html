@@ -69,6 +69,12 @@
         </li>    
 
         
+			<li>
+				<a href="/about/">
+					About
+				</a>
+			</li>
+        
 			<li class="selected" >
 				<a href="/developer-information/">
 					Developer Information
@@ -78,6 +84,12 @@
 			<li>
 				<a href="/docs/">
 					Docs
+				</a>
+			</li>
+        
+			<li>
+				<a href="/sitemap/">
+					Sitemap
 				</a>
 			</li>
         
@@ -134,17 +146,43 @@
   <p>We know that different people like different styles, but we also know
 that the consistency is very important and that is why we enforce
 strict coding style. <br /><br /></p>
-<p>Some of the rules are automatically enforced by jslint and other are manually
+<p>Some of the rules are automatically enforced by <a href="/developer-information/jslint/">jslint</a> and other are manually
 checked when doing code reviews. <br /><br /></p>
 <p>Cast styling guide is largely based on the <a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google JavaScript styling guide</a>,
 but there are some additions, exceptions and differences which are documented bellow.</p>
 <h3>Cast Styling Guide</h3>
 <ul>
-<li>Always refer to the error variable which is passed to the callback as <code>err</code></li>
-<li>Always refer to the callback function as <code>callback</code></li>
-<li>Use dot notation (<code>person.height</code>) when accessing instances attributes, but use
-dictionary notation (<code>config['port_number']</code>) when the object is used as a
-hash-table / dictionary</li>
+<li>Always refer to the error variable which is passed to the callback as <code>err</code><br /><br /></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">on_result</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span><br />  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span><br />    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error happened!&#39;</span><span class="p">);</span><br />    <span class="k">return</span><span class="p">;</span><br />  <span class="p">}</span><br /><span class="p">}</span><br /></pre></div><br /></div>
+
+<ul>
+<li>Always refer to the callback function as <code>callback</code><br /><br /></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">createNewInstance</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span><br /><span class="p">...</span><br /><span class="p">}</span><br /></pre></div><br /></div>
+
+<ul>
+<li>Always put return statement on a separate line<br /><br /></li>
+</ul>
+<p><strong>Good:</strong></p>
+<div class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">on_result</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span><br />  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span><br />    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error happened!&#39;</span><span class="p">);</span><br />    <span class="k">return</span><span class="p">;</span><br />  <span class="p">}</span><br /><span class="p">}</span><br /></pre></div><br /></div>
+
+<p><strong>Bad:</strong></p>
+<div class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">on_result</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span><br />  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span><br />    <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error happened!&#39;</span><span class="p">);</span><br />  <span class="p">}</span><br /><span class="p">}</span><br /></pre></div><br /></div>
+
+<ul>
+<li>Use dot notation when accessing instances attributes, but use dictionary 
+notation when the object is used as a hash-table / dictionary<br /><br /></li>
+</ul>
+<p><strong>Example (dot notation):</strong></p>
+<div class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;180&#39;</span><span class="p">);</span><br /><span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">person</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span><br /></pre></div><br /></div>
+
+<p><strong>Example (dictionary notation):</strong></p>
+<div class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span><br />  <span class="s1">&#39;port_number&#39;</span><span class="o">:</span> <span class="mi">12345</span><br /><span class="p">};</span><br /><span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">config</span><span class="p">[</span><span class="s1">&#39;port_number&#39;</span><span class="p">];</span><br /></pre></div><br /></div>
+
+<ul>
 <li>camelCase notation is used almost every where. Only exception to this rule are
 constants, POST body values and the object key names in places where the object
 is used as a hash-table / dictionary. In this places we use underscore-separated
@@ -160,6 +198,9 @@ in the POST body.<br /><br /></p>
 
 <p>In this case, underscore-separated notation is used because the object is used as
 a dictionary.</p>
+<ul>
+<li>Use <a href="http://code.google.com/closure/compiler/docs/js-for-compiler.html#tags">JSDoc annotations</a></li>
+</ul>
 
 
 

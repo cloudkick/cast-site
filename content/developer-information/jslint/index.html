@@ -1,0 +1,42 @@
+{% extends "skeleton/_body_md.html" %}
+
+{%hyde
+    title: "JSlint"
+    navname: "JSlint"
+    created: 2011-03-24
+%}
+
+{% block content_md %}
+
+To enforce some of our style conventions, we use JSLint. JSlint has been
+tweak and modified according to our needs (we have disabled some checks and
+added support for Node global objects).
+
+To run JSlint on all the source files, run the following command in the Cast
+root directory:<br /><br />
+
+{% syntax console %}
+vagrant@vagrantup:/data/cast$ scons jslint
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+NODE_PATH=lib/extern/ /usr/local/bin/node lib/extern/Nodelint/bin/jslint lib/agent/check_worker.js lib/agent/constants.js lib/cast-agent/entry.js
+JSLinting /data/cast/lib/agent/constants.js
+JSLinting /data/cast/lib/agent/entry.js
+/data/cast/lib/agent/constants.js passed with 0 errors
+/data/cast/lib/agent/entry.js passed with 0 errors
+
+=======================================
+
+Total Files: 2
+Total Errors: 0
+{% endsyntax %}
+
+You can also specify a list of files on which the style checking will be
+performed:<br /><br />
+
+{% syntax console %}
+scons jslint files="lib/utils/command_parser.js lib/util/misc.js"
+{% endsyntax %}
+
+{% endblock %}

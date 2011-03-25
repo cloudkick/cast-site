@@ -2,6 +2,7 @@ default: build
 
 setup: hyde/requirements.txt
 	pip install -r hyde/requirements.txt
+	pip install pygments
 
 build:
 	rm -rf deploy
