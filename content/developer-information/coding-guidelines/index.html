@@ -18,41 +18,133 @@ doing code reviews.
 
 Cast styling guide is largely based on the [Google JavaScript styling
 guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml),
-but there are some additions, exceptions and differences which are documented
-bellow.
+with a few extra rules to keep common patterns consistent across all of cast.
 
-### Cast Styling Guide
+### Documentation
 
-* Always refer to the error variable which is passed to the callback as `err`
+* Use [JSDoc annotations](http://code.google.com/closure/compiler/docs/js-for-compiler.html#tags)
+
+
+### Asynchronous Code
+
+* Don't use Node's *Sync synchronous calls.
+* Use [async](https://github.com/caolan/async) to alleviate excessive nesting
+for parallel or serial operations.
+* Always name callback arguments `callback`
+* Always name error arguments to a callback `err`
 
 **Example:**
-
 {% syntax javascript %}
-var onResult = function(err, result) {
-  if (err) {
-    console.log('Error happened!');
-    return;
-  }
-  /* Success code path, process result here */
+function onComplete(instance, callback) {
+  var name;
+
+  // These actions will be performed in series, until the last action completes
+  // or callback is fired with an error
+  async.series([
+    // Action #1
+    function(callback) {
+      instance.getName(function(err, _name) {
+        name = _name;
+        callback(err);
+      });
+    },
+
+    // Action #2 - async.apply() can be used when the function takes a callback
+    // with a signature matching that of an async.series() callback. Be
+    // careful, because the call to async.apply is evaluated *before* the call
+    // to async.series()
+    async.apply(registerInstance, instance)
+  ],
+  // This handler will be called after the series completes or errors out
+  function(err) {
+    if (!err) {
+      log.info("Instance Registered: " + name);
+    }
+    callback(err);
+  });
 }
 {% endsyntax %}
 
-* Always refer to the callback function as `callback`
+### Naming Conventions
 
-**Example:**
+JSON files and our HTTP API use lower case names with words separated by
+underscores in the style commonly used in C or Python. However for all other
+names we stick to the camelCase convention more widely used in Javascript. To
+keep this straight we have developed the following rules:
 
-{% syntax javascript %}
-var createNewInstance = function(name, count, path, callback) {
-...
-}
-{% endsyntax %}
+* Attribute names that will be written to files or network streams (for example
+as JSON to a file or HTTP request, HTTP POST parameters, etc) should always use
+underscore separated names `like_this` and should always appear in single
+quotes in the code. This means quoting names when defining an object literal,
+and using index notation (that is, `foo['bar']`) when accessing or assigning
+attributes. See the example below.
 
-* Always put return statement on a separate line
+* For everything else, stick to Google's [naming
+rules](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml?showone=Naming#Naming)
+for all variable names, **except** when object attribute names are used outside
+of cast
+
+* Use dot notation when accessing object attributes, unless the attribute names
+must be in quotes in accordance with the rules above.
+
+**Note:** A good way to think about this is that we should be able to use an
+automated tool to change a name everywhere it appears outside of quotes in
+cast. So if changing the name you are about to use would break existing network
+protocols or on-disk formats, put it in quotes. Otherwise don't.
 
 **Good:**
 
 {% syntax javascript %}
-var on_result(err, result) {
+// This will go in an HTTP POST, so we used single quoted underscored_names
+var body = querystring.stringify({
+    'bundle_name': bundleName,
+    'bundle_version': bundleVersion
+});
+request.end(body);
+
+// This is just a normal object, so we stick to Google's naming conventions
+var curInstance = new Instance('bar');
+curInstance.getBundleVersion(callback);
+
+// This is a constant, so we use Google's naming conventions here as well
+var DEFAULT_SECRET = 'password';
+
+// This will be written to a JSON file so attribute names must appear in single
+// quotes and be underscore_separated
+var config = {
+  'secret': DEFAULT_SECRET,
+  'ssl_enabled': true
+};
+
+if (config['secret'] && config['ssl_enabled']) {
+  ...
+}
+{% endsyntax %}
+
+**Bad:**
+
+{% syntax javascript %}
+// The 'secret' attribute should appear in single quotes, but does not
+var config = {
+  secret: 'password',
+  'ssl_enabled': true
+}
+
+// These should use index notation so the attributes can be in quotes
+if (config.secret && config.ssl_enabled) {
+  ...
+}
+{% endsyntax %}
+
+### Miscellaneous
+
+* Always put return statement on their own line, unless an actual value is
+being returned.
+
+**Good:**
+
+{% syntax javascript %}
+var onResult = function(err, result) {
   if (err) {
     console.log('Error happened!');
     return;
@@ -63,68 +155,12 @@ var on_result(err, result) {
 **Bad:**
 
 {% syntax javascript %}
-var on_result(err, result) {
+var onResult = function(err, result) {
   if (err) {
     return console.log('Error happened!');
   }
 }
 {% endsyntax %}
 
-* Use dot notation when accessing instances attributes, but use dictionary 
-notation when the object is used as a hash-table / dictionary
-
-**Example (dot notation):**
-
-{% syntax javascript %}
-var person = new Person('foo', 'bar', '180');
-var height = person.height;
-{% endsyntax %}
-
-**Example (dictionary notation):**
-
-{% syntax javascript %}
-var config = {
-  'port_number': 12345
-};
-var port = config['port_number'];
-{% endsyntax %}
-
-
-* camelCase notation is used almost every where. Only exception to this rule are
-constants, POST body values and the object key names in places where the object
-is used as a hash-table / dictionary. In this places we use underscore-separated
-notation.
-
-**Example #1:**
-
-{% syntax javascript %}
-var body = querystring.stringify({
-    bundle_name: bundleName,
-    bundle_version: bundleVersion
-});
-...
-request.end(body);
-{% endsyntax %}
-
-In this case, underscore-separated notation is used, because the values are sent
-in the POST body.
-
-**Example #2:**
-
-{% syntax javascript %}
-var COMMON_FIELDS = {
-  'entry_file': {'type': 'string',
-                 'required': true,
-                 'description': 'Script or file which is run when starting the application'}
-  }
-}
-
-var entry_file = COMMON_FIELDS['entry_file'];
-{% endsyntax %}
-
-In this case, underscore-separated notation is used because the object is used as
-a dictionary.
-
-* Use [JSDoc annotations](http://code.google.com/closure/compiler/docs/js-for-compiler.html#tags)
 
 {% endblock %}
