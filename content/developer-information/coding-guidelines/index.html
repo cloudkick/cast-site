@@ -9,19 +9,21 @@
 
 {% block content_md %}
 
-We know that different people like different styles, but we also know
-that the consistency is very important and that is why we enforce
-strict coding style. <br /><br />
+We know that different people like different styles, but we also know that the
+consistency is very important and that is why we enforce strict coding style.
 
-Some of the rules are automatically enforced by [jslint](/developer-information/jslint/) and other are manually
-checked when doing code reviews. <br /><br />
+Some of the rules are automatically enforced by
+[jslint](/developer-information/jslint/) and other are manually checked when
+doing code reviews.
 
-Cast styling guide is largely based on the [Google JavaScript styling guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml),
-but there are some additions, exceptions and differences which are documented bellow.
+Cast styling guide is largely based on the [Google JavaScript styling
+guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml),
+but there are some additions, exceptions and differences which are documented
+bellow.
 
 ### Cast Styling Guide
 
-* Always refer to the error variable which is passed to the callback as `err`<br /><br />
+* Always refer to the error variable which is passed to the callback as `err`
 
 **Example:**
 
@@ -35,8 +37,7 @@ var onResult = function(err, result) {
 }
 {% endsyntax %}
 
-* Always refer to the callback function as `callback`<br /><br />
-
+* Always refer to the callback function as `callback`
 
 **Example:**
 
@@ -46,8 +47,7 @@ var createNewInstance = function(name, count, path, callback) {
 }
 {% endsyntax %}
 
-* Always put return statement on a separate line<br /><br />
-
+* Always put return statement on a separate line
 
 **Good:**
 
@@ -71,7 +71,7 @@ var on_result(err, result) {
 {% endsyntax %}
 
 * Use dot notation when accessing instances attributes, but use dictionary 
-notation when the object is used as a hash-table / dictionary<br /><br />
+notation when the object is used as a hash-table / dictionary
 
 **Example (dot notation):**
 
@@ -93,7 +93,7 @@ var port = config['port_number'];
 * camelCase notation is used almost every where. Only exception to this rule are
 constants, POST body values and the object key names in places where the object
 is used as a hash-table / dictionary. In this places we use underscore-separated
-notation. <br /><br />
+notation.
 
 **Example #1:**
 
@@ -107,7 +107,7 @@ request.end(body);
 {% endsyntax %}
 
 In this case, underscore-separated notation is used, because the values are sent
-in the POST body.<br /><br />
+in the POST body.
 
 **Example #2:**
 
