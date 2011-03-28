@@ -225,7 +225,7 @@ var onResult = function(err, result) {
 {% endsyntax %}
 
 * If you want to re-define a variable which is passed to a function, add an
-underscore to the end of the variable name:
+underscore to the end of the variable name.
 
 **Example:**
 
@@ -235,6 +235,22 @@ var runCheck = function(interval) {
 
   // .. do something with interval_
 };
+{% endsyntax %}
+
+* Don't manually concatenate strings and variables together to construct a new
+string, use a sprintf function.
+
+**Good:**
+
+{% syntax javascript %}
+var someString = 'Hello ' + name + '. Today is a ' + weather + 'day.';
+
+{% endsyntax %}
+
+**Bad:**
+
+{% syntax javascript %}
+var someString = sprintf('Hello %s. Today is a %s day.', name, weather);
 {% endsyntax %}
 
 {% endblock %}
