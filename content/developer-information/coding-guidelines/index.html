@@ -136,6 +136,68 @@ if (config.secret && config.ssl_enabled) {
 }
 {% endsyntax %}
 
+### Import (require) conventions
+
+When importing (requiring) a module, always do it in the following order:
+
+1. System modules (sys, util, path, child_process, net, http, ...)
+2. External modules and dependencies (async, sprintf, ...)
+3. Cast modules (util/misc, lib/deployment/instances, ..)
+
+Each group must be separated by a blank line.
+
+**Example:**
+
+{% syntax javascript %}
+var sys = require('sys');
+var path = require('path');
+
+var async = require('async');
+var sprintf = require('sprintf').sprintf;
+
+var config = require('util/config');
+var misc = require('util/misc');
+{% endsyntax %}
+
+### Export conventions
+
+Always export constants, variables, functions and class definitions at the end of
+the file.
+This allows you to logically group related exports together and quickly find out
+which values are exported just by jumping to the end of the file.
+
+**Example:**
+
+{% syntax javascript %}
+var DEFAULT_RUN_INTERVAL = 5000;
+var DEFAULT_TIMEOUT = 30000;
+
+function HealthCheck(name, interval) {
+    ...
+ }
+
+function TCPCheck(name, interval) {
+    HealthCheck.call(this);
+}
+
+uitl.inherits(TCPCheck, HealthCheck);
+
+
+function printCheckList() {
+    ...
+}
+
+... more definitions ...
+
+exports.DEFAULT_RUN_INTERVAL = DEFAULT_RUN_INTERVAL;
+exports.DEFAULT_TIMEOUT = DEFAULT_TIMEOUT;
+
+exports.HealthCheck = HealthCheck;
+exports.TCPCheck = TCPCheck;
+
+exports.printCheckList = printCheckList;
+{% endsyntax %}
+
 ### Miscellaneous
 
 * Always put return statement on their own line, unless an actual value is
