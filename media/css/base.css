@@ -20,6 +20,8 @@ a:hover,
 #sitenav a { color:#e9ffb2; }
 #sitenav a { text-shadow:#888 0 0 .15em; }
 
+.right { float: right;}
+
 code, pre { font-family:menlo, courier new, monospace; }
 code {  background:#bbb; padding:0 .25em; margin:0 .25em; }
 pre { padding:.75em; line-height:1.4em; }
