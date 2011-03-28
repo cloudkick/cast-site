@@ -224,5 +224,17 @@ var onResult = function(err, result) {
 }
 {% endsyntax %}
 
+* If you want to re-define a variable which is passed to a function, add an
+underscore to the end of the variable name:
+
+**Example:**
+
+{% syntax javascript %}
+var runCheck = function(interval) {
+  var interval_ = interval || DEFAULT_RUN_INTERVAL;
+
+  // .. do something with interval_
+};
+{% endsyntax %}
 
 {% endblock %}
