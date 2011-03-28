@@ -8,30 +8,67 @@
 
 {% block content_md %}
 
-For the Cast tests we use a custom written test runner which runs every test file in
-a separate process.<br /><br />
+For the Cast tests we use a custom written test runner ([Whiskey][1]) which runs
+every test file in a separate process.
 
-Tests are logically grouped in a file and each test is wrapped inside an anonymous
-function (similar to the Node tests).<br /><br />
+Test files are located in the `tests` directory and are logically grouped in
+files where each test is exported as a named function.
 
-Because tests are wrapped inside anonymous function you are encouraged to write
-a short comment about what the test does above this function.<br /><br />
+Currently we have two types of tests:
+
+* simple tests (`tests/simple/`) - this tests are mostly a combination of simple
+functional and integration tests
+* integration tests (`tests/integration/`) - this tests perform assertions on the
+actual running Cast agent and client
+
+### Writing tests
+
+When writing a test please make a function name as descriptive as possible (long
+name is not problematic in this case).
+
+Note that the test function names are an exception and use underscore separated
+notation because this allows better for a better readability.
+
+Also try to keep test functions short and create a separate test for each scenario
+and aspect of the function / module you are testing.
+
+For example, if you writing a test for a `mkdir` function which gets passed in
+a base path, directory name and directory permissions and creates a directory,
+create a separate test for each of the following scenarios:
+
+* directory creation is successful (no permissions are passed in, default argument
+value is used)
+* directory creation is successful (permissions are passed in)
+* directory creation failed (no permission to create a directory)
+* directory creation failed (invalid base path is provided)
+* directory creation failed (empty string is a provided for a directory name)
+* directory creation failed (invalid permissions are provided)
+
+### setUp and tearDown functions
+
+Our test runner also supports `setUp` and `tearDown` functions. `setUp` function
+is ran before the tests and `tearDown` function is ran after all the tests have
+completed.
+
+`setUp` function is usually used to perform some kind of setup and
+`tearDown` is usually used to perform some kind of post-test cleanup.
+
+Keep in mind that in most cases you won't need to use those two functions,
+because we already use a global init function (`tests/init.js`), which deletes
+and re-creates `.tests` directory before every test file is run.
+
+### Test function example
 
 Here is an example test taken from the hooks test file (`test/simple/hooks.js`):
 
 {% syntax javascript %}
-// Test success (exit code == 0)
-(function() {
-  var n = 0;
-
+exports['test_success'] = function() {
   var callback = function(err, killed, stdout, stderr) {
     assert.ifError(err);
     assert.ok(!killed);
 
     assert.equal('test hook success stdout', stdout);
     assert.equal('test hook success stderr', stderr);
-
-    n++;
   };
 
   var hook_file = 'hook_success.js';
@@ -42,11 +79,10 @@ Here is an example test taken from the hooks test file (`test/simple/hooks.js`):
                                              instance_version_path);
   base_hook.execute(null, [], callback);
   instance_hook.execute(null, [], callback);
+};
+{% endsyntax %}
 
-  process.on('exit', function() {
-    assert.equal(n, 2, 'Tests completed');
-  });
-})();{% endsyntax %}
+### Running the tests
 
 To run all the tests, issue the following command in the Cast root folder:<br /><br />
 
@@ -57,23 +93,24 @@ scons test
 If all the tests pass, you should see an output similar to the one bellow:<br /><br />
 
 {% syntax console %}
-vagrant@vagrantup:/data/cast$ scons test
-scons: Reading SConscript files ...
 scons: done reading SConscript files.
 scons: Building targets ...
-/usr/local/bin/node tests/run.js --verbosity 2 --tests 'tests/integration/test-basic-client.js tests/simple/ck-agent-service.js tests/simple/command-parser.js'
-Running test: test-basic-client.js
-Running test: ck-agent-service.js
-Running test: command-parser.js
-==================== Tests Complete ====================
-    Successes: 19
-     - integration/test-basic-client.js
-     - simple/ck-agent-service.js
-     - simple/command-parser.js
-     Failures: 0
-    ------------------
-        Total: 19
-scons: done building targets.
+NODE_PATH=/data/buildslave/cast-nodejs-v0.4-ubuntu9.10_x86_64/build/lib
+  test_remotes                                                               [OK]
+util-templates.js
+  test_getTemplateContext_with_various_arguments                             [OK]
+  test_renderTemplateAsString_with_various_arguments                         [OK]
+  test_render_and_save_templates                                             [OK]
+http-bundles.js
+  test_http_bundles                                                          [OK]
+--------------------------------------------------------------------------------
+Ran 5 tests in 5.465s
+
+Successes: 5
+Failures: 0
+Timeouts: 0
+
+PASSED
 {% endsyntax %}
 
 If you don't want to run all the tests, you can pass a comma separated list of
@@ -85,4 +122,6 @@ scons test tests="tests/simple/util-version.js tests/simple/util-templates.js"
 
 This will run all the tests in file `tests/simple/util-version.js` and
 `tests/simple/util-templates.js`.
+
+[1]: https://github.com/cloudkick/whiskey 
 {% endblock %}
