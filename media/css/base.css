@@ -22,6 +22,10 @@ a:hover,
 
 .right { float: right;}
 
+table.inline { width: 95%; margin: 10px 0 10px 0; }
+table.inline th { font-weight: bold; border-bottom: 1px solid; }
+table.inline td,th { text-align: center; }
+
 code, pre { font-family:menlo, courier new, monospace; }
 code {  background:#bbb; padding:0 .25em; margin:0 .25em; }
 pre { padding:.75em; line-height:1.4em; }
