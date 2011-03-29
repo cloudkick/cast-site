@@ -1,0 +1,126 @@
+{% extends "skeleton/_body_md.html" %}
+
+{%hyde
+    title: "Vagrant image"
+    navname: "Vagrant image"
+    created: 2011-03-29
+    modified: 2011-03-29
+%}
+
+{% block content_md %}
+
+Cast Vagrant image is a self sustaining virtual machine image with all the tools
+and dependencies which are needed for the Cast development pre-installed.
+
+This allows everyone to start Cast development in practically minutes.
+
+### Available images
+
+Here is a list of the available Vagrant images. When possible use the latest
+version.
+
+<table class="inline">
+  <tr>
+    <th>Version</th>
+    <th>Release date</th>
+    <th>Changes / Notes</th>
+    <th>Download URL</th>
+  </tr>
+  <tr>
+    <td>0.1.1</td>
+    <td>29.03.2011</td>
+    <td>/</td>
+    <td>/</td>
+  </tr>
+</table>
+
+### Git repository
+
+In case you want to modify and build the Vgarant image yourself you can find
+all the files needed in our git repository on Github -
+[https://github.com/cloudkick/cast-vagrant](https://github.com/cloudkick/cast-vagrant).
+
+### Requirements
+
+* VirtualBox version 4.0.0 or above [http://www.virtualbox.org/wiki/Downloads](http://www.virtualbox.org/wiki/Downloads
+)
+
+* Vagrant version 0.7.0 or above - [http://vagrantup.com/docs/getting-started/index.html](http://vagrantup.com/docs/getting-started/index.html
+)
+
+**Note for Mac OS X users**
+
+Mac OS X ships with an outdated version of RubyGems so you might need to update
+your RubyGems installation before installing the Vagrant gem by running the
+following command in a terminal: `sudo gem update --system`.
+
+**Note for Ubuntu users**
+
+Vagrant uses NFS protocol for the shared folders so if the following packages
+are not already present on your system, you need to install them:
+`nfs-common, nfs-kernel-server`. You can install them by running the following
+command in a terminal: `sudo apt-get install nfs-common nfs-kernel-server`.
+After the installation has completed you also need to start
+the NFS daemon for the first time: `sudo /etc/init.d/nfs-kernel-server start`.
+
+### Installation / Initial setup
+
+**1. Download and add the Cast image**
+
+{% syntax console %}
+vagrant add cast <image URL>
+{% endsyntax %}
+
+**2. Create the Cast Vagrant image root directory and run the `vagrant init` command in
+it**
+
+{% syntax console %}
+mkdir /home/user/vagrant/cast
+cd /home/user/vagrant/cast
+vagrant init cast
+{% endsyntax %}
+
+**3. Clone the Cast git repository to a local folder**
+
+{% syntax console %}
+git clone git@github.com:cloudkick/cast.git /home/user/development/cast
+{% endsyntax %}
+
+**4. Set the path to the local Cast git repository in the `Vagrantfile` - add the
+line bellow to your `Vagrantfile`**
+
+{% syntax ruby %}
+config.vm.share_folder("cast", "/data/cast", "/home/user/development/cast", :nfs => true)
+{% endsyntax %}
+
+Don't forget to replace `/home/user/development/cast` with the actual path to
+the root of your git repository clone.
+
+**5. Start the VM**
+
+{% syntax console %}
+vagrant up
+{% endsyntax %}
+
+**6. Run the tests to make sure that everything is working**
+
+{% syntax console %}
+cd /data/casts
+scons test
+{% endsyntax %}
+
+**7. Start hacking!**
+
+### Usage
+
+Here is a list and a short description of some of the useful Vagrant commands.
+
+* `vagrant suspend` - save the snapshot and suspend the VM
+* `vagrant resume` - resume from a saved snapshot
+* `vagrant halt` - turn off the VM (current state is not saved)
+* `vagrant up` - start a stopped VM
+* `vagrant reload` - re-run the provisioner. This is useful if you edit some
+attributes in your `Vagratfile` or a cookbook settings and you want the provision
+to re-evaluate all the recipes.
+
+{% endblock %}
