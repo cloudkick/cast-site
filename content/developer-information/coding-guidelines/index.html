@@ -24,7 +24,6 @@ with a few extra rules to keep common patterns consistent across all of cast.
 
 * Use [JSDoc annotations](http://code.google.com/closure/compiler/docs/js-for-compiler.html#tags)
 
-
 ### Asynchronous Code
 
 * Don't use Node's *Sync synchronous calls.
@@ -206,7 +205,31 @@ being returned.
 **Good:**
 
 {% syntax javascript %}
-var onResult = function(err, result) {
+function onResult(err, result) {
+  if (err) {
+    console.log('Error happened!');
+    return;
+  }
+}
+{% endsyntax %}
+
+**Bad:**
+
+{% syntax javascript %}
+function onResult(err, result) {
+  if (err) {
+    return console.log('Error happened!');
+  }
+}
+{% endsyntax %}
+
+* Always declare functions directly. Declaring an anonymous function and
+assigning it to a variable makes debugging and reading stack traces harder.
+
+**Good:**
+
+{% syntax javascript %}
+function onResult(err, result) {
   if (err) {
     console.log('Error happened!');
     return;
@@ -224,13 +247,14 @@ var onResult = function(err, result) {
 }
 {% endsyntax %}
 
+
 * If you want to re-define a variable which is passed to a function, add an
 underscore to the end of the variable name.
 
 **Example:**
 
 {% syntax javascript %}
-var runCheck = function(interval) {
+function runCheck(interval) {
   var interval_ = interval || DEFAULT_RUN_INTERVAL;
 
   // .. do something with interval_
