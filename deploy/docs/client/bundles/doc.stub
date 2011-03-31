@@ -1,7 +1,0 @@
-<h3>Sub-Commands</h3>
-<ul>
-<li><a href="/docs/client/bundles/doc.stub/list">List</a></li>
-<li><a href="/docs/client/bundles/doc.stub/create">Create</a></li>
-<li><a href="/docs/client/bundles/doc.stub/validate-manifest">Validate-manifest</a></li>
-<li><a href="/docs/client/bundles/doc.stub/upload">Upload</a></li>
-</ul>
