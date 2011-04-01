@@ -20,7 +20,8 @@ a:hover,
 #sitenav a { color:#e9ffb2; }
 #sitenav a { text-shadow:#888 0 0 .15em; }
 
-.right { float: right;}
+.right { float: right; }
+.last-modified { margin-top: 2em; text-align: center; font-size: 80%;}
 
 table.inline { width: 95%; margin: 10px 0 10px 0; }
 table.inline th { font-weight: bold; border-bottom: 1px solid; }
@@ -60,4 +61,4 @@ blockquote { font-size:.8em; line-height:1.4em; color:#fff; font-style:italic; m
 
 .post-date{ float:right; font-style:italic; font-size:.8em; }
 
-#footer { border-top:.1em dotted #777; margin:3em auto 0; padding:.25em 0 0 0; font-size:.8em; color:#777; text-align: center; }
+#footer { border-top:.1em dotted #777; margin:.55em auto 0; padding:.25em 0 0 0; font-size:.8em; color:#777; text-align: center; }

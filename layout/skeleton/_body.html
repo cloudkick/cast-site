@@ -9,4 +9,6 @@
 {% block content_body %}
 {% endblock %}
 
+<div class="last-modified">Last modified {% if not page.modified %}{{page.created|date:"d.m.Y"}}{% else %}{{page.modified}}{% endif %}</div>
+
 {% endblock %}
