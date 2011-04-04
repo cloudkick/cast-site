@@ -41,6 +41,11 @@ blockquote { font-size:.8em; line-height:1.4em; color:#fff; font-style:italic; m
 #header a { text-decoration:none; padding:0; margin:0; }
 #site-logo { margin-bottom:-0.075em; }
 
+#content img { border: 1px dotted #fff; margin: 25px 0 6px 0; }
+#content { width: 900px; }
+.center { display: block; margin-left: auto !important; margin-right: auto !important; text-align:center;}
+.imgdesc { font-size: 90%; font-weight: bold; }
+
 #sitenav { border:.1em dotted #777; border-width:.1em 0; margin:0 0 .25em 0; font-weight:600; padding-bottom:.05em; }
 #sitenav ul { list-style-type:none; margin:0; }
 #sitenav li { display:inline-block; margin-right:1em; }
