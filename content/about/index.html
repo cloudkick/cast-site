@@ -4,16 +4,76 @@
     title: "About"
     navname: "About"
     created: 2011-03-24
+    modified: 2011-04-04
 %}
 
 {% block content_md %}
+
+### About
+
+Cast is an open-source, [Apache 2.0][] licensed framework for deploying, upgrading
+and managing application and services. You can think of it as a backend which is
+powering [Heroku][], [Nodejitsu][] and similar application hosting services.
+
+The framework is API-driven which means that every functionality is exposed
+though a well designed, JSON based REST API.
 
 ### Background
 
 ### Goals
 
+Our goal is to build an API-driven framework which allows users to easily deploy,
+manage, upgrade and automatically scale their applications and services.
+
+We are working on making it equally easy to use, both for small applications
+running on a single server and for large applications running on hundreds of
+servers.
+
+First preview version only allows user to deploy NodeJS applications, but in the
+future we will also allow users to deploy applications written in arbitrary
+languages, be it Python, Ruby, Scala or NodeJS using all kind of different
+technologies and servers (Apache, nginx, lighttpd, MongoDB, Cassandra, Redis,
+memcache, Solr and so on).
+
+In short, we want to provide a powerful and solid foundation which people can
+use for managing their applications or for building their services on top of it.
+
+The services built on top of the Cast framework can range from simple web
+interfaces for managing the agents or a fully fledged application hosting
+services such as Heroku.
+
 ### Architecture and technologies
 
+Cast is composed of two different parts - an agent and a client.
+
+#### Agent
+
+Agent runs on your server(s) and it's job is to fulfill all kind of requests sent 
+by clients or other agents:
+
+- request to create a new application instance
+- request to destroy an existing application instance
+- request to upgrade an instances
+- request to stop, start or restart a service
+- request to return a list of running services
+- request to perform a rolling upgrade of services running on multiple servers
+- etc.
+
+#### Client
+
+Client is a part which is usually installed on your development machine or your
+server and it's job is to send requests and talk to the agent.
+
+For your convenience, the default package includes a reference client
+implementation written in NodeJS, but because the agent exposes all the
+functionality through a JSON bases REST API this means that you can build your
+own custom client or a wrapper around an existing client written in your favorite
+programming language.
+
 ### Roadmap
+
+[Apache 2.0]: http://www.apache.org/licenses/LICENSE-2.0.html
+[Heroku]: http://www.heroku.com
+[Nodejitsu]: http://nodejitsu.com
 
 {% endblock %}
