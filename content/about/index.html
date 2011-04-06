@@ -4,7 +4,7 @@
     title: "About"
     navname: "About"
     created: 2011-03-24
-    modified: 2011-04-04
+    modified: 2011-04-06
 %}
 
 {% block content_md %}
@@ -18,14 +18,16 @@ powering [Heroku][], [Nodejitsu][] and similar application hosting services.
 The framework is API-driven which means that every functionality is exposed
 though a well designed, JSON based REST API.
 
-### Background
-
 ### Goals
 
-Our goal is to build an API-driven framework which allows users to easily deploy,
-manage, upgrade and automatically scale their applications and services.
+Our goal is to build a "smart" API-driven framework which allows users to easily
+deploy, manage, upgrade and automatically scale their applications and services.
 
-We are working on making it equally easy to use, both for small applications
+With smart we mean that system should mostly be able to configure and balance
+itself, without requiring a lot of configuration and intervention from the ops
+people.
+
+We are also working on making it equally easy to use, both for small applications
 running on a single server and for large applications running on hundreds of
 servers.
 
@@ -51,7 +53,7 @@ Cast is composed of two different parts - an agent and a client.
 
 #### Agent
 
-Agent runs on your server(s) and it's job is to fulfill all kind of requests sent 
+Agent runs on your server(s) and it's job is to fulfill all kind of requests sent
 by clients or other agents:
 
 - request to create a new application instance
@@ -73,7 +75,11 @@ functionality through a JSON bases REST API this means that you can build your
 own custom client or a wrapper around an existing client written in your favorite
 programming language.
 
+#### Why NodeJS?
+
 ### Roadmap
+
+To be announced.
 
 [Apache 2.0]: http://www.apache.org/licenses/LICENSE-2.0.html
 [Heroku]: http://www.heroku.com
