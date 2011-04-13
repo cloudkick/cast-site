@@ -1,0 +1,9 @@
+{% markdown %}
+
+### Sub-Commands
+
+* [List]({{ page.url }}list)
+* [Sign]({{ page.url }}sign)
+* [Delete]({{ page.url }}delete)
+
+{% endmarkdown %}

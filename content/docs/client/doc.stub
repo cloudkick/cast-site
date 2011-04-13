@@ -9,5 +9,6 @@
 * [Instances]({{ page.url }}instances)
 * [Services]({{ page.url }}services)
 * [Remotes]({{ page.url }}remotes)
+* [Ca]({{ page.url }}ca)
 
 {% endmarkdown %}

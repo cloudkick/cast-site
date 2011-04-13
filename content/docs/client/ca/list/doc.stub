@@ -1,0 +1,23 @@
+{% markdown %}
+Print a list of Certificate Signing Requests that are currently pending (or
+specify --all to list all requests) on the specified remote.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast ca list [OPTIONS] 
+{% endsyntax %}
+{% markdown %}
+
+### Options
+
+__--all__, __-a__
+
+List CSRs, even if they are already signed.
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+
+{% endmarkdown %}

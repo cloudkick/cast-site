@@ -1,0 +1,27 @@
+{% markdown %}
+Sign the Certificate Signing Request for the specified hostname. Use this with
+care, signing this request will allow the requester to control cast as soon as
+they retrieve the resulting certificate.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast ca sign [OPTIONS] HOSTNAME 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__HOSTNAME__
+
+Hostname identifying the CSR to sign
+
+
+### Options
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+
+{% endmarkdown %}

@@ -1,0 +1,27 @@
+{% markdown %}
+Delete a pending Certificate Signing Request. This will remove the request from
+the remote filesystem and prevent it from being signed or included in listings
+of requests.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast ca delete [OPTIONS] HOSTNAME 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__HOSTNAME__
+
+Hostname identifying the CSR to delete
+
+
+### Options
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+
+{% endmarkdown %}
