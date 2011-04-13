@@ -1,0 +1,212 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Getting Started with Cast"
+    created: 2011-03-26 18:09:05
+    listing: False
+%}
+
+{% block content_body %}
+{% markdown %}
+In this introductory tutorial we're going to show you how to get up and running
+with cast and use it to deploy Redis, a fast and lightweight key-value store.
+
+This tutorial assumes you have sudo access on an Ubuntu server, as well as a
+client OS supported by Cast (pretty much any *nix should do, including OSX),
+but should work on most supported systems with only a few modifications.
+
+### Server Setup
+
+{% syntax bash %}
+# Install runit
+~ $ sudo aptitude install runit
+
+# Download the cast agent
+~ $ git clone git://github.com/cloudkick/cast.git
+
+# Create a directory for cast, as well as the services-enabled subdirectory
+~ $ mkdir -p cast-data/services-enabled
+
+# Create and edit a config file with your favorite editor
+~ $ mkdir ~/.cast
+~ $ vim ~/.cast/config.json
+{% endsyntax %}
+
+Now edit the config file to look something like this, substituting your user
+name into the `data_root` path (this path must be absolute).
+
+{% syntax javascript %}
+{
+  "data_root": "/home/russell/cast-data"
+}
+{% endsyntax %}
+
+Now you just need to start runit and the cast-agent.
+
+{% syntax bash %}
+# This process must be running with an absolute path before cast starts
+~ $ runsvdir /home/russell/cast-data/services-enabled/ &
+
+# Start cast-agent!
+~ $ cast/bin/cast-agent
+13 Apr 14:50:32 - info: Cast API listening at https://0.0.0.0:49443/
+13 Apr 14:50:32 - info: Starting service Health
+13 Apr 14:50:32 - info: health service started
+13 Apr 14:50:32 - info: Fingerprint: 09:09:A2:EB:4B:F0:FB:3F:2A:C0:9C:0A:B5:E6:C5:66:BE:8C:77:D5
+{% endsyntax %}
+
+Ok, that wasn't so bad now was it?
+
+### Client Setup
+
+If your client and server are the same machine you can skip these steps - cast
+automatically adds a remote named `local` that points to the local cast
+instance, and you will be authorized automatically.
+
+If you want to use the cast client on a separate machine however, you'll need
+to install cast and authorize the client.
+
+{% syntax bash %}
+# Download cast
+~ $ git clone git://github.com/cloudkick/cast.git
+
+# Add cast to your PATH - you may want to put this in your .bashrc
+~ $ export PATH="${PATH}:${HOME}/cast/bin/"
+
+# Add your server as a 'remote' in cast
+~ $ cast remotes add example https://apps.example.com
+Your Email Address: russell@example.com
+Name for this Client: russell-workstation
+Certificate information
+  Subject:
+    CN: apps.example.com
+  Issuer:
+    CN: apps.example.com
+  Valid to: Apr  5 23:42:42 2016 GMT
+  Fingerprint: 09:09:A2:EB:4B:F0:FB:3F:2A:C0:9C:0A:B5:E6:C5:66:BE:8C:77:D5
+
+Are you sure you want to accept this certificate (y/n) [n]? y
+Remote added
+{% endsyntax %}
+
+The last command will prompt you for a hostname and email address. You can use
+anything you like for these, but for the hostname you should choose something
+that uniquely identifies the computer you are using as a client. It will also
+ask you to to verify the agent's certificate before it sends any requests. You
+should compare the fingerprint shown to the fingerprint that the agent
+displayed when it started before accepting it.
+
+Once the agent has been added, you must grant access to your client.
+
+**Back on the server:**
+
+{% syntax bash %}
+# List pending requests - the one from your client should be the only one shown
+~ $ cast ca list
+Certificate Signing Requests (unsigned):
+
+Hostname                                          Status
+russell-workstation                               Awaiting Approval
+
+# Sign your request
+~ $ cast ca sign russell-workstation
+CSR for 'russell-workstation': Approved
+{% endsyntax %}
+
+The next time you connect to the agent, your signed certificate will be
+automatically downloaded and used, without the need for further work on your
+part.
+
+### Deploying Redis
+
+Now for the fun part, deploying Redis.
+
+{% syntax bash %}
+# We'll need the Redis source
+~ $ git clone git://github.com/antirez/redis.git
+~ $ cd redis
+~/redis $ git checkout 2.2.4
+
+# We need to create a hooks directory - more on this later
+~/redis $ mkdir -p .cast-project/hooks
+{% endsyntax %}
+
+First we need to create a hook to compile redis on the server at
+`.cast-project/hooks/post_prepare` which should look like this:
+
+{% syntax bash %}
+#!/bin/sh
+make
+{% endsyntax %}
+
+By default cast can run two types of applications - shell scripts and Node.js
+applications. We'll create a shell script to run redis called `run.sh`:
+
+{% syntax bash %}
+#!/bin/sh
+./src/redis-server
+{% endsyntax %}
+
+With that done, all we need to do is create a cast manifest for the
+application.  The manifest is just a JSON file, and if you want to write it by
+hand you can, but we've included an `init` command to guide you through the
+process:
+
+{% syntax bash %}
+# Pass the name of the shell script to run to 'cast init'
+~ $ cast init run.sh
+Application Name: redis
+Application Description: A fast networked datastore
+Application Type: (nodejs/shell) [nodejs] shell
+Manifest created
+{% endsyntax %}
+
+Now the application is all set up, we just need to upload and deploy it.
+
+{% syntax bash %}
+# Create a 'bundle' of the application - we have to tell it the version
+~/redis $ cast bundles create v2.2.4-r0
+Manifest validation succeeded, creating a bundle  |
+Bundle created
+
+# Upload the bundle
+~/redis $ cast bundles upload
+Uploading redis@v2.2.4-r0.tar.gz (2668438 bytes)
+100% [=========================================================================]
+Waiting for response...
+Upload Successful
+
+# Create an instance using the most recently created bundle
+~/redis $ cast instances create redis0
+Using bundle 'redis@v2.2.4-r0'
+Instance 'redis0' created
+
+# Now we just need to enable and start the instance
+~ $ cast services enable redis0
+Service 'redis0' enabled.
+
+~ $ cast services start redis0
+Service 'redis0' started.
+
+# Redis is running! Check it out
+~ $ cast services list
+Available services:
+
+Name                          Enabled             Status
+redis0                        true                pid: 1614, state: running
+
+# We can even get a live feed Redis's logs
+~ $ cast services tail -F redis0
+2011-04-13_23:36:19.26323 [4140] 13 Apr 16:36:19 # Warning: no config file specified, using the default config. In order to specify a config file use 'redis-server /path/to/redis.conf'
+2011-04-13_23:36:19.26407 [4140] 13 Apr 16:36:19 * Server started, Redis version 2.2.4
+2011-04-13_23:36:19.26408 [4140] 13 Apr 16:36:19 * The server is now ready to accept connections on port 6379
+2011-04-13_23:36:19.26523 [4140] 13 Apr 16:36:19 - 0 clients connected (0 slaves), 922064 bytes in use
+2011-04-13_23:36:24.27118 [4140] 13 Apr 16:36:24 - 0 clients connected (0 slaves), 922064 bytes in use
+2011-04-13_23:36:29.27802 [4140] 13 Apr 16:36:29 - 0 clients connected (0 slaves), 922064 bytes in use
+^C
+{% endsyntax %}
+
+Neat!
+
+{% endmarkdown %}
+{%endblock%}
