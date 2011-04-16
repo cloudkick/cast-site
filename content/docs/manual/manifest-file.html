@@ -1,0 +1,98 @@
+{% extends "skeleton/_body_md.html" %}
+
+{%hyde
+    title: "Manifest File"
+    navname: "Manifest File"
+    created: 2011-04-16
+    modified: 2011-04-16
+%}
+
+{% block content_md %}
+Cast manifest file is a JSON file which contains different information,
+requirements and facts about your application.
+
+The manifest file must be named `cast.json` and located in the root of
+your application directory.
+
+### Manifest File Attributes
+
+Here is a list and a description of all the attributes which can be defined
+in the `cast.json` file.
+
+* `name` (required) - the name of your application
+
+* `description` (required) - a short description of your application
+
+* `type` (required) - type of your application. Currently supported types are:
+    * `nodejs` - NodeJS application which will be run by the same node executable
+  which runs the agent.
+    * `shell` - A shell script which will be executed by the service manager. This
+  type can represent practically any application or service. Only requirement is
+  that the `entry_file` is executable. The `entry_file` can for example be
+  a simple shell script which starts your database server (Redis, MongoDB,
+  Cassandra, ...).
+
+* `entry_file` (required) - a file which is run when starting your application. For NodeJS
+applications this is usually `server.js`. If not provided it defaults to
+`server.json` for NodeJS applications and `shell.sh` for shell applications.
+
+* `template_files` - a list of the templates will which will be rendered when
+creating or upgrading an instance.
+
+Each template file has access to the following context objects:
+
+* `facts` - different facts about the server on which the agent is running
+(architecture, hostname, node version, etc.)
+
+* `instance` - different information about the current instance (name, version,
+etc.)
+
+* `user_defined` - context variables defined by the user. For more information,
+please see `template_variables` attribute.
+
+* `template_variables` - An object which contains extra context variables
+which will be available in the templates.
+
+* `data_files` - A list of relative paths to the data files.
+
+Data files are files which are modified or created during the application
+run-time (database files, files uploaded by the users, etc.). Those files are
+special because they are preserved between instance upgrades.
+
+Note: Each path must be relative to the application root and must not contain
+a leading slash. If a data file is a directory it must contain trailing slash -
+this is required because it is not necessary that the data file already exist
+when the application is started so we can't the automatically detect the data
+file type.
+
+Fields described bellow are here for the future reference and are simply ignored
+in the current version.
+
+* `health_checks` - a list of health checks which are applied to your
+application. Health checks monitor your application or service for defects or
+abnormal behavior and trigger different scripts if your application becomes
+unreachable or some other user-defined threshold has been been reached.
+
+### Manifest Example
+
+Here is an example manifest file which utilizes all the fields described above.
+
+{% syntax javascript %}
+{
+  "name": "Sample NodeJS application",
+  "description": "A sample NodeJS application controlled by Cast",
+  "type": "nodejs",
+  "data_files": [ "data/visitor_log.dat" ],
+  "template_files": [ "server.js" ],
+  "template_variables": { "welcome_msg": "Hello Cast!",
+                          "server_port": 8000,
+                          "data_file": "data/visitor_log.dat"}
+}
+{% endsyntax %}
+
+In this example we have a single data file which is used to store an IP address
+and a date of all the users which have visited our application.
+
+A sample application which goes with the manifest field above can be found on
+github: [https://github.com/cloudkick/cast-sample-node-app/](https://github.com/cloudkick/cast-sample-node-app/).
+{% endblock %}
