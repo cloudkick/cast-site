@@ -1,0 +1,62 @@
+{% extends "skeleton/_body_md.html" %}
+
+{%hyde
+    title: "Templates"
+    navname: "Templates"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content_md %}
+Templates are special files which have access to the different context variables and
+are rendered when the instance is created and upgraded.
+
+Templates also allow user to define extra variables which can be then accessed
+in all the template files.
+
+This for example allow you to define some application specific settings which
+can than be accessed in all the templates.
+
+### Context variables
+
+In each template you have access to the following objects:
+
+* facts - different facts about the server on which the agent is running:
+    * `arch` - server architecture
+    * `gnutar` - path to the GNU tar compatible binary (tar / gtar / gnutar)
+    * `hostname` - server hostname
+    * `kernel` - kernel version (available on Linux, FreeBSD and OS X)
+    * `node_binary` - path to the node binary which is running the agent
+    * `node_version` - version of the node which is running the agent
+    * `runsvdir_running` - true if runit is currently monitoring the Cast
+    services enabled path, false otherwise
+    * `username` - username of the user running the agent
+
+* user_defined - variables defined by the user in the manifest file
+(`template_variables` attribute)
+
+* instance - different information about the current instance:
+    * `name` - instance name
+    * `path` - path to the instance directory
+
+### Template tags
+
+Syntax used in the templates is inspired by the Django templates which means that
+most of the tags have the same name and behave the same as the equivalent Django
+template tags.
+
+## accessing a variable value
+
+{% syntax javascript \%}
+{% endsyntax %}
+
+#### for loop
+
+{% syntax javascript %}
+{% endsyntax %}
+
+### if
+
+{% syntax javascript %}
+{% endsyntax %}
+{% endblock %}
