@@ -1,0 +1,58 @@
+{% extends "skeleton/_body_md.html" %}
+
+{%hyde
+    title: "Data Files"
+    navname: "Data Files"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content_md %}
+Data files represent different files and directories which are created and / or
+modified during the application run-time.
+
+Data files are special because they are stored in a common directory and preserved
+between the instance upgrades.
+
+Some things which can be classified and represented as data files are:
+
+* content uploaded by the users (images, files, etc.),
+* different log files created by the application,
+* database files,
+* etc.
+
+### Using and specifying data files
+
+Lets imagine we have an application which allows user to upload images and
+stores some application specific log files in a separate directory.
+
+Images are stored in a directory `user_images/` and log files are stored in a
+directory `logs/`.
+
+For these two directories to be preserved during the instance upgrades, the
+`data_files` attribute in the manifest file should look like this:
+
+{% syntax javascript %}
+"data_files": [ "user_images/", "logs/" ]
+{% endsyntax %}
+
+*Note: All the paths in the `data_files` array should be relative to the
+application root and should contain a trailing slash if a specified path is a
+directory.*
+
+When first creating an instance the agent will create a special directory for
+storing the data files which is shared across all the instance versions and also
+appropriate symbolic links to the currently active application version directory.
+
+If the any of the directory or file specified in the `data_files` array already 
+exists in the bundle it will be copied (with all the content) to the shared data 
+directory before creating all the appropriate symbolic links.
+
+So in this case when your application will save a file to the
+`<application_root>/user_images/` directory this file will actually be saved to
+`<cast_root>/application/<application_name>/data/user_images/`.
+
+Keep in mind that the `user_images` directory in the application root is a
+symbolic link which means that you should never overwrite it, otherwise you will
+break the data file functionality.
+{% endblock %}
