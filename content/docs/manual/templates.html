@@ -45,18 +45,28 @@ Syntax used in the templates is inspired by the Django templates which means tha
 most of the tags have the same name and behave the same as the equivalent Django
 template tags.
 
-## accessing a variable value
-
-{% syntax javascript \%}
-{% endsyntax %}
-
-#### for loop
+### accessing a variable value
 
 {% syntax javascript %}
+{% templatetag openbrace %}{% templatetag openbrace %} facts.hostname {% templatetag closebrace %}{% templatetag closebrace %}
 {% endsyntax %}
 
-### if
+### for loop
 
 {% syntax javascript %}
+{% templatetag openbrace %}% for item in some_array %{% templatetag closebrace %}{% templatetag openbrace %}% endfor %{% templatetag closebrace %}
+{% endsyntax %}
+
+In the for loop you also have access to some special variables:
+
+* `forloop.counter` - current iteration of the loop (1 based)
+* `forloop.counter0` - current iteration of the loop (0 based)
+* `forloop.revcounter` - number of iterations from the end of the loop (1 based)
+* `forloop.revcounter0` - number of iterations from the end of the loop (0  based)
+
+### if statement
+
+{% syntax javascript %}
+{% templatetag openbrace %}% if value == 4 %{% templatetag closebrace %}{% templatetag openbrace %}% else if value < 2 %{% templatetag closebrace %}{% templatetag openbrace %}% else %}{% templatetag openbrace %}% endif %{% templatetag closebrace %}
 {% endsyntax %}
 {% endblock %}
