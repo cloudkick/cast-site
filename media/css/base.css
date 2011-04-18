@@ -33,6 +33,7 @@ pre { padding:.75em; line-height:1.4em; }
 .highlight { overflow:auto; font-size:.8em; border-radius:.5em; -moz-border-radius:.5em; -webkit-box-shadow:#fff 0 0 .5em; -moz-box-shadow:#fff 0 0 .5em; }
 .highlight pre {}
 strong { font-weight: bold; }
+em { font-style: italic; }
 blockquote { font-size:.8em; line-height:1.4em; color:#fff; font-style:italic; margin:.5em 2em .5em 1em; padding:0 0 0 1em; border-left:.25em solid #ddd; }
 
 #site { margin:2em auto; width:50em; min-height:25em; position:relative; }
