@@ -1,0 +1,68 @@
+{% extends "skeleton/_body_md.html" %}
+
+{%hyde
+    title: "Hooks"
+    navname: "Hooks"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content_md %}
+Hooks are scripts written in arbitrary programming languages which are executed
+by the Cast agent at different stages.
+
+The scripts must be executable and get passed in different arguments depending
+on the state and the context in which the hook has been executed.
+
+Hook is considered to complete successfully if it exists with a zero exit code,
+exiting with any other non-zero exit code signals a failure.
+
+Hook is also considered to fail (time out) if it does not complete in some
+pre-defined time period (this period depends on the hook type).
+
+### Available Hooks
+
+Here is a list and a description of the currently available hooks.
+
+#### Instance hooks
+
+Instance hooks are tied to an instance and must be located in the
+`.cast_project/` directory in your application root. 
+
+##### post_prepare
+
+This hook is executed after the instance has been prepared. Instance is
+considered to be prepared after the instance directory has been created, all the
+application files have been hard-linked into place and the templates have been
+rendered, but before the actual service has been created.
+
+**Hook location**: `.cast-project/post-prepare`  
+**Timeout**: 50 seconds  
+**Arguments (1)**:
+
+* `version` - bundle version which has been prepared
+
+#### pre_version_activate
+
+This hook is executed before the instance version has been activated.
+
+**Hook location**: `.cast-project/pre_version_activate`  
+**Timeout**: 50 seconds  
+**Arguments (2)**:
+
+* `version` - version which is about to be activated
+* `version_path` - path to the about to be activated version bundle directory
+
+#### post_version_activate
+
+This hook is executed after the instance version has been activated.
+
+**Hook location**: `.cast-project/post_version_activate`  
+**Timeout**: 50 seconds  
+**Arguments (2)**:
+
+* `version` - version which has been activated
+* `version_path` - path to the bundle directory of the version which has been
+activated
+
+{% endblock %}
