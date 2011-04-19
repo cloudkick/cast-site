@@ -144,17 +144,24 @@ applications. We'll create a shell script to run redis called `run.sh`:
 
 {% syntax bash %}
 #!/bin/sh
-./src/redis-server
+exec ./src/redis-server redis.conf
 {% endsyntax %}
 
-With that done, all we need to do is create a cast manifest for the
-application.  The manifest is just a JSON file, and if you want to write it by
-hand you can, but we've included an `init` command to guide you through the
-process:
+We would also like Redis to be able to store data that will persist across
+upgrades. To this end we find the `dbfilename` setting in `redis.conf` and
+change it:
+
+{% syntax nginx %}
+ # The filename where to dump the DB
+dbfilename data/dump.rdb
+{% endsyntax %}
+
+Now we need to generate a cast manifest to tell cast a few details about our
+application.
 
 {% syntax bash %}
-# Pass the name of the shell script to run to 'cast init'
-~ $ cast init run.sh
+# Pass the shell script and data directory to 'cast init'
+~ $ cast init --datafile data/ run.sh
 Application Name: redis
 Application Description: A fast networked datastore
 Application Type: (nodejs/shell) [nodejs] shell
@@ -177,26 +184,19 @@ Waiting for response...
 Upload Successful
 
 # Create an instance using the most recently created bundle
-~/redis $ cast instances create redis0
+~/redis $ cast instances create --enable redis0
 Using bundle 'redis@v2.2.4-r0'
 Instance 'redis0' created
-
-# Now we just need to enable and start the instance
-~ $ cast services enable redis0
-Service 'redis0' enabled.
-
-~ $ cast services start redis0
-Service 'redis0' started.
 
 # Redis is running! Check it out
 ~ $ cast services list
 Available services:
 
 Name                          Enabled             Status
-redis0                        true                pid: 1614, state: running
+redis0@v2.2.4-r0              true                pid: 1614, state: running
 
 # We can even get a live feed Redis's logs
-~ $ cast services tail -F redis0
+~ $ cast services tail -F redis0@v2.2.4-r0
 2011-04-13_23:36:19.26323 [4140] 13 Apr 16:36:19 # Warning: no config file specified, using the default config. In order to specify a config file use 'redis-server /path/to/redis.conf'
 2011-04-13_23:36:19.26407 [4140] 13 Apr 16:36:19 * Server started, Redis version 2.2.4
 2011-04-13_23:36:19.26408 [4140] 13 Apr 16:36:19 * The server is now ready to accept connections on port 6379
