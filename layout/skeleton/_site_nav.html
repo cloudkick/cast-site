@@ -8,6 +8,10 @@
             <a href="{{site.listing_url}}">Home</a>
         </li>
 
+        <li{% ifequal page.module.name "about" %} class="selected" {% endifequal %}>
+            <a href="/about/">About</a>
+        </li>
+
         <li{% ifequal page.module.name "start" %} class="selected" {% endifequal %}>
             <a href="/start/">Get Started</a>
         </li>
@@ -20,8 +24,8 @@
             <a href="/developer-information/">Developers</a>
         </li>
 
-        <li{% ifequal page.module.name "about" %} class="selected" {% endifequal %}>
-            <a href="/about/">About</a>
+        <li{% ifequal page.module.name "downloads" %} class="selected" {% endifequal %}>
+            <a href="/downloads/">Downloads</a>
         </li>
 
         <li{% ifequal page.module.name "sitemap" %} class="selected" {% endifequal %}>
