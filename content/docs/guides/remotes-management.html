@@ -1,0 +1,76 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Managing Remotes"
+    created: 2011-03-01
+%}
+
+{% block content_body %}
+{% markdown %}
+
+If you will be running the cast agent and client on different machines, or as
+different users on the same machine, you will need to add the agent as a
+'remote' from the client. Then, before the remote can be accessed you will need
+to approve the certificate signing request submitted by the client when the
+remote was added.
+
+1. [Adding Remotes](#adding_remotes)
+2. [Approving Signing Requests](#signing_requests)
+3. [Using the Remote](#using_remotes)
+
+<h4 id="adding_remotes">Adding Remotes</h4>
+
+**On the client:**
+
+{% syntax bash %}
+~ $ cast remotes add example https://apps.example.com
+Your Email Address: russell@example.com
+Name for this Client: russell-workstation
+Certificate information
+  Subject:
+    CN: apps.example.com
+  Issuer:
+    CN: apps.example.com
+  Valid to: Apr  5 23:42:42 2016 GMT
+  Fingerprint: 09:09:A2:EB:4B:F0:FB:3F:2A:C0:9C:0A:B5:E6:C5:66:BE:8C:77:D5
+
+Are you sure you want to accept this certificate (y/n) [n]? y
+Remote added
+{% endsyntax %}
+
+This will prompt you for a hostname and email address. You can use anything you
+like for these, but for the hostname you should choose something that uniquely
+identifies the computer you are using as a client. It will also ask you to to
+verify the agent's certificate before it sends any requests. You should compare
+the fingerprint shown to the fingerprint that the agent displayed when it
+started before accepting it.
+
+<h4 id="signing_requests">Signing Requests</h4>
+
+**On the server:**
+
+{% syntax bash %}
+# List pending requests - the one from your client should be the only one shown
+~ $ cast ca list
+Certificate Signing Requests (unsigned):
+
+Hostname                                          Status
+russell-workstation                               Awaiting Approval
+
+# Sign your request
+~ $ cast ca sign russell-workstation
+CSR for 'russell-workstation': Approved
+{% endsyntax %}
+
+<h4 id="using_remotes">Using Remotes</h4>
+
+The next time you connect to the agent, your signed certificate will be
+automatically downloaded and used, without the need for further work on your
+part. For any command that requires communication with an agent you may specify
+the name of the remote to use with the `--remote <name>` option.
+
+
+
+
+{% endmarkdown %}
+{% endblock %}

@@ -1,19 +1,17 @@
 {% extends "skeleton/_body.html" %}
 
 {%hyde
-    title: "Cast Manual"
+    title: "Cast Documentation"
     navname: "Documentation"
     created: 2011-03-01
 %}
 
 {% block content_body %}
 {% markdown %}
-Cast consists of two components: an agent, which runs on your servers, and a
-client which you run locally to interact with cast agents. All communication
-happens over a REST-like API, so you're free to develop your own client, or to
-interact directly with the agent from internal management systems.
 
-### Contents
+{% include "docs/guides/_listing.markdown" %}
+
+### References
 
 1. [Agent](/docs/agent/)
 2. [Client](/docs/client/)

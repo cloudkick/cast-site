@@ -1,0 +1,56 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Installing Cast"
+    created: 2011-03-01
+%}
+
+{% block content_body %}
+{% markdown %}
+
+1. [Install with Cast Installer](#script_install)
+2. [Install From Source](#source_install)
+
+<h4 id="script_install">Install with Cast Installer</h4>
+
+Coming Soon...
+
+<h4 id="source_install">Install from Source</h4>
+
+To install cast from source you will first need [Node.js](http://nodejs.org)
+and [runit](http://smarden.org/runit/). Exactly how you install these is up to
+you, but the following procedures should work on recent versions of Ubuntu.
+
+##### Installing Node.js
+
+We recommend building Node.js from source to make sure you have a
+recent version.
+
+{% syntax bash %}
+~ $ git clone git://github.com/joyent/node.git
+~ $ cd node
+~/node $ ./configure
+~/node $ make && sudo make install
+{% endsyntax %}
+
+##### Installing Runit
+
+Runit hasn't changed  much recently, so installing it with your package manager
+should be fine.
+
+{% syntax bash %}
+~ $ sudo aptitude install runit
+{% endsyntax %}
+
+##### Installing Cast
+
+Finally you need cast itself. Clone it to wherever you want to install it.
+
+{% syntax bash %}
+~ $ git clone git://github.com/cloudkick/cast.git
+{% endsyntax %}
+
+Then add cast's `bin` directory to your `PATH`.
+
+{% endmarkdown %}
+{% endblock %}

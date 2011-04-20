@@ -1,0 +1,18 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast Guides"
+    created: 2011-03-01
+%}
+
+{% block content_body %}
+{% markdown %}
+
+The following guides illustrate common activities involving cast. Once you are
+familiar with the basics you might be more interested in the various
+[reference materials](/docs/).
+
+{% include "docs/guides/_listing.markdown" %}
+
+{% endmarkdown %}
+{% endblock %}
