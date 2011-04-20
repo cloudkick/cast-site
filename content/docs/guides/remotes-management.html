@@ -66,11 +66,22 @@ CSR for 'russell-workstation': Approved
 
 The next time you connect to the agent, your signed certificate will be
 automatically downloaded and used, without the need for further work on your
-part. For any command that requires communication with an agent you may specify
-the name of the remote to use with the `--remote <name>` option.
+part.
 
+##### Project Remotes
 
+Remotes can also be created using the `--project` option which will create the
+specified remote only for the project in your current directory.
 
+##### Choosing a Remote
+
+For any command that requires communication with an agent you may specify the
+name of the remote to use with the `--remote <name>` option. If you don't
+specify a remote to use a remote marked as `default` will be used. Whether a
+remote is chosen by default or by name, remotes will first be selected from the
+project in your current directory, then, if no matching remote exists (or there
+is no project in the current directory) will be chosen from the set of global
+remotes.
 
 {% endmarkdown %}
 {% endblock %}
