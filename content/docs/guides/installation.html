@@ -3,21 +3,83 @@
 {%hyde
     title: "Installing Cast"
     created: 2011-03-01
+    modified: 2011-04.21
 %}
 
 {% block content_body %}
 {% markdown %}
 
-1. [Install with Cast Installer](#script_install)
-2. [Install From Source](#source_install)
+1. [Install latest stable version with the Cast installer](#script_install)
+2. [Install development version from source](#source_install)
 
-<h4 id="script_install">Install with Cast Installer</h4>
+<h3 id="script_install">Install latest stable version with the Cast installer</h3>
 
-Coming Soon...
+#### Installing runit
 
-<h4 id="source_install">Install from Source</h4>
+Cast only external dependency which is not included with the distribution
+tarball and needs to be installed manually is [runit](http://smarden.org/runit/).
 
-To install cast from source you will first need [Node.js](http://nodejs.org)
+Bellow you can find installation instructions for most of the supported
+operating system.
+
+##### Ubuntu and Debian
+
+If you are running Ubuntu or Debian you can simply install it using apt-get.
+
+{% syntax bash %}
+sudo apt-get install runit
+{% endsyntax %}
+
+##### Mac OS X
+
+If you are using Mac OS X you can install it using ports
+
+{% syntax bash %}
+sudo port install runit
+{% endsyntax %}
+
+or homebrew.
+
+{% syntax bash %}
+sudo homebrew install runit
+{% endsyntax %}
+
+#### Installing Cast
+
+After you have installed runit you need to obtain Cast distribution tarball.
+You can find a link to the latest stable version on the [Downloads](/downloads/) 
+page.
+
+##### Download tarball, unpack it and move to the newly created directory
+
+{% syntax bash %}
+wget http://files.cast-project.org/cast-<version>.tar.gz
+tar -xzvf cast-<version>.tar.gz
+cd cast-<version>
+{% endsyntax %}
+
+##### Install Cast and NodeJS using the installer
+
+{% syntax bash %}
+scons install
+{% endsyntax %}
+
+By default Cast and all the dependencies get installed into the `/opt/cast/`
+directory.
+
+If you want to change this path you can use the `--prefix=PATH` option.
+
+By default the installer will also compile and install the bundled version of
+NodeJS into the Cast prefix (`/opt/cast/`).
+
+If you already have a supported version of NodeJS installed on your system, you
+can use the `--use-system-node` option which means that the installer won't compile
+and install bundled version of NodeJS, but it will use a version which is already
+present on the system.
+
+<h3 id="source_install">Install development version from source</h3>
+
+To install Cast from source you will first need [Node.js](http://nodejs.org)
 and [runit](http://smarden.org/runit/). Exactly how you install these is up to
 you, but the following procedures should work on recent versions of Ubuntu.
 
@@ -39,12 +101,12 @@ Runit hasn't changed  much recently, so installing it with your package manager
 should be fine.
 
 {% syntax bash %}
-~ $ sudo aptitude install runit
+~ $ sudo apt-get install runit
 {% endsyntax %}
 
 ##### Installing Cast
 
-Finally you need cast itself. Clone it to wherever you want to install it.
+Finally you need Cast itself. Clone it to wherever you want to install it.
 
 {% syntax bash %}
 ~ $ git clone git://github.com/cloudkick/cast.git
