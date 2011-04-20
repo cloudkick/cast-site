@@ -36,13 +36,13 @@ strong { font-weight: bold; }
 em { font-style: italic; }
 blockquote { font-size:.8em; line-height:1.4em; color:#fff; font-style:italic; margin:.5em 2em .5em 1em; padding:0 0 0 1em; border-left:.25em solid #ddd; }
 
-#site { margin:2em auto; width:50em; min-height:25em; position:relative; }
+#site { margin:2em auto; width:900px; min-height:25em; position:relative; }
 
 #header { margin-bottom:.5em; }
 #header a { text-decoration:none; padding:0; margin:0; }
 #site-logo { margin-bottom:-0.075em; }
 
-#content img { border: 1px dotted #fff; margin: 25px 0 6px 0; }
+#content img { border: none; margin: 25px 0 6px 0; }
 #content { width: 900px; }
 .center { display: block; margin-left: auto !important; margin-right: auto !important; text-align:center;}
 .imgdesc { font-size: 90%; font-weight: bold; }
@@ -64,6 +64,10 @@ blockquote { font-size:.8em; line-height:1.4em; color:#fff; font-style:italic; m
 .context-nav a { }
 
 #content-header { padding:0 0 .5em 0; }
+
+.left_column, .right_column { width: 400px; }
+.left_column { float:left; margin-right: 50px; }
+.right_column { float:right; margin-left: 50px; }
 
 .post-date{ float:right; font-style:italic; font-size:.8em; }
 

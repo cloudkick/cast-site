@@ -1,24 +1,48 @@
-{% extends "skeleton/_body.html" %}
+{% extends "skeleton/_body_clean.html" %}
 
 {%hyde
-    title: "Modernize your Deployment Workflow"
+    title: "Cast - The Open Deployment Platform"
     created: 2011-04-12
     listing: True
+    nocrumbs: True
 %}
 
 {% block content_body %}
-<ul>
-  <li>
-    <a href="#">Speed</a>
-    <p>Deploy or update your application in seconds</p>
-  </li>
-  <li>
-    <a href="#">Rollbacks</a>
-    <p>Roll back your application as easily as you upgraded it</p>
-  </li>
-  <li>
-    <a href="">Security</a>
-    <p>All traffic is encrypted and authenticated by default</p>
-  </li>
-</ul>
-{%endblock%}
+<div class="left_column">
+  <h3>What is Cast?</h3>
+  Cast is a platform for deploying and managing applications. Think of Cast as
+  your very own Platform as a Service that you can use in the cloud or even in
+  your datacenter. Cast is flexible enough to integrate with existing
+  deployment workflows, but powerful enough to be used as a standalone
+  deployment platform.
+</div>
+
+<div class="right_column">
+  <h3>Cast in Action</h3>
+{% syntax bash %}
+$ cast instances create staging
+Instance 'staging' created
+$ cast instances create production
+Instance 'production'
+{% endsyntax %}
+  <a href="/start/"><img src="/media/images/see_in_action_button.png" /></a>
+</div>
+<br style="clear:both;">
+
+<h3>Who is Cast For?</h3>
+<div class="left_column">
+  <h4>System Administrators</h4>
+  Since the dawn computing sysadmins have had nightmares about letting
+  developers loose on production systems. Cast is designed to let you worry
+  about the systems while the developers worry about the code.
+</div>
+<div class="right_column">
+  <h4>Developers</h4>
+  Developers recognize the importance of good sysadmins. But while they're busy
+  worrying about letting you on their systems your users are waiting for you to
+  push that critical fix. Cast not only lets you push the fix without having to
+  get on the system, Cast even makes it easy and safe.
+</div>
+<br style="clear:both;">
+
+{% endblock %}

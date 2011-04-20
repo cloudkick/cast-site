@@ -13,5 +13,7 @@
 {% endblock %}
 
 {% block breadcrumbs %}
+{% if not page.nocrumbs %}
 {% include "skeleton/_breadcrumbs.html"%}
+{% endif %}
 {% endblock %}
