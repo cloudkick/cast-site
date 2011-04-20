@@ -1,14 +1,15 @@
 {% extends "skeleton/_body.html" %}
 
 {%hyde
-    title: "Cast Documentation"
-    navname: "Documentation"
-    created: 2011-03-01
+    title: "References"
+    created: 2011-04-21
+    modified: 2011-04-21
 %}
 
 {% block content_body %}
 {% markdown %}
-{% include "docs/guides/_listing.markdown" %}
+
 {% include "docs/references/_listing.markdown" %}
+
 {% endmarkdown %}
 {% endblock %}
