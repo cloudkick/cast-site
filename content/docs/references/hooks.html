@@ -14,11 +14,11 @@ by the Cast agent at different stages.
 The scripts must be executable and get passed in different arguments depending
 on the state and the context in which the hook has been executed.
 
-Hook is considered to complete successfully if it exists with a zero exit code,
-exiting with any other non-zero exit code signals a failure.
+A hook is considered to have completed successfully if it exists with a zero
+exit code, exiting with any other non-zero exit code signals a failure.
 
-Hook is also considered to fail (time out) if it does not complete in some
-pre-defined time period (this period depends on the hook type).
+A hook is also considered to have failed (timed out) if it does not complete in
+some pre-defined time period (this period depends on the hook type).
 
 1. [Available Hooks](#avaiable_hooks)
 2. [Instance Hooks](#instance_hooks)
@@ -28,7 +28,7 @@ pre-defined time period (this period depends on the hook type).
 
 <h3 id="avaiable_hooks">Available Hooks</h3>
 
-Here is a list and a description of the currently available hooks.
+This list describes the hooks currently available in cast.
 
 <h4 id="instance_hooks">Instance Hooks</h4>
 
@@ -38,9 +38,9 @@ Instance hooks are tied to an instance and must be located in the
 <h4 id="post_prepare">post_prepare</h4>
 
 This hook is executed after the instance has been prepared. Instance is
-considered to be prepared after the instance directory has been created, all the
-application files have been hard-linked into place and the templates have been
-rendered, but before the actual service has been created.
+considered to be prepared after the instance directory has been created, all
+the application files have been hard-linked into place and the templates have
+been rendered, but before the actual service has been created.
 
 **Hook location**: `.cast-project/post-prepare`  
 **Timeout**: 50 seconds  
