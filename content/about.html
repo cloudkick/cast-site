@@ -33,25 +33,20 @@ direcly Cast's HTTP API.
 Our goal is to build a "smart" API-driven framework which allows users to easily
 deploy, manage, upgrade and automatically scale their applications and services.
 
-With smart we mean that system should mostly be able to configure and balance
-itself, without requiring a lot of configuration and intervention from the ops
-people.
+We hope that Cast will:
 
-We are also working on making it equally easy to use, both for small applications
-running on a single server and for large applications running on hundreds of
-servers.
-
-First preview version only allows user to deploy NodeJS applications, but in the
-future we will also allow users to deploy applications written in arbitrary
-languages, be it Python, Ruby, Scala or NodeJS using all kind of different
-technologies and servers (Apache, nginx, lighttpd, MongoDB, Cassandra, Redis,
-memcache, Solr and so on).
+* Allow applications to scale and configure themselves.
+* Provide a language and techology agnostic service platform.
+* Be easy as easy to use for huge applications on hundreds of servers as it is
+  for tiny ones on one server.
+* Be adapted for a wide range of applications through an open and
+  community-oriented development process.
 
 In short, we want to provide a powerful and solid foundation which people can
 use for managing their applications or for building their services on top of it.
 
 The services built on top of the Cast framework can range from simple web
-interfaces for managing the agents or a fully fledged application hosting
+interfaces for managing the agents to fully fledged application hosting
 services such as Heroku.
 
 ### Architecture and technologies
@@ -63,8 +58,8 @@ Cast is composed of two different parts - an agent and a client.
 
 #### Agent
 
-Agent runs on your server(s) and it's job is to fulfill all kind of requests sent
-by clients or other agents:
+The Cast Agent runs on your server(s) and fulfills all kind of requests sent by
+clients or other agents:
 
 - request to create a new application instance
 - request to destroy an existing application instance
@@ -76,16 +71,14 @@ by clients or other agents:
 
 #### Client
 
-Client is a part which is usually installed on your development machine or your
-server and it's job is to send requests and talk to the agent.
+The Cast Client is usually installed on your development machine or your server
+and provides a command line interface for interacting with Cast Agents.
 
 For your convenience, the default package includes a reference client
 implementation written in NodeJS, but because the agent exposes all the
 functionality through a JSON bases REST API this means that you can build your
-own custom client or a wrapper around an existing client written in your favorite
-programming language.
-
-#### Why NodeJS?
+own custom client or a wrapper around an existing client written in your
+favorite programming language.
 
 ### Roadmap
 
