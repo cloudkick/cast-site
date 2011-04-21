@@ -27,7 +27,7 @@ in the `cast.json` file.
 * `description` (required) - a short description of your application
 
 * `type` (required) - type of your application. Currently supported types are:
-    * `nodejs` - NodeJS application which will be run by the same node executable
+    * `nodejs` - Node.js application which will be run by the same node executable
   which runs the agent.
     * `shell` - A shell script which will be executed by the service manager. This
   type can represent practically any application or service. Only requirement is
@@ -35,9 +35,9 @@ in the `cast.json` file.
   a simple shell script which starts your database server (Redis, MongoDB,
   Cassandra, ...).
 
-* `entry_file` (required) - a file which is run when starting your application. For NodeJS
+* `entry_file` (required) - a file which is run when starting your application. For Node.js
 applications this is usually `server.js`. If not provided it defaults to
-`server.json` for NodeJS applications and `shell.sh` for shell applications.
+`server.json` for Node.js applications and `shell.sh` for shell applications.
 
 * `template_files` - a list of the templates will which will be rendered when
 creating or upgrading an instance.
@@ -82,8 +82,8 @@ Here is an example manifest file which utilizes all the fields described above.
 
 {% syntax javascript %}
 {
-  "name": "Sample NodeJS application",
-  "description": "A sample NodeJS application controlled by Cast",
+  "name": "Sample Node.js application",
+  "description": "A sample Node.js application controlled by Cast",
   "type": "nodejs",
   "data_files": [ "data/visitor_log.dat" ],
   "template_files": [ "server.js" ],
