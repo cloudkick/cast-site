@@ -131,7 +131,12 @@ Now for the fun part, deploying Redis.
 ~/redis $ mkdir -p .cast-project/hooks
 {% endsyntax %}
 
-First we need to create a hook to compile redis on the server at
+Because Redis is a compiled application we need to make sure it gets compiled
+at some point before we try to run it. We could do this locally, but depending
+on the client and server this might require cross compiling - something we'd
+rather avoid. For a large deployment a better choice would be to run a buildbot
+or similar system somewhere. But for our small deployment we can just use Cast's
+hook system to compile Redis when it is deployed. We create
 `.cast-project/hooks/post_prepare` which should look like this:
 
 {% syntax bash %}
@@ -140,7 +145,7 @@ make
 {% endsyntax %}
 
 By default cast can run two types of applications - shell scripts and Node.js
-applications. We'll create a shell script to run redis called `run.sh`:
+applications. We'll create a shell script to run Redis called `run.sh`:
 
 {% syntax bash %}
 #!/bin/sh
