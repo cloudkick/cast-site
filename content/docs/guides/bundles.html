@@ -1,0 +1,115 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Creating Application Bundles"
+    created: 2011-03-01
+%}
+
+{% block content_body %}
+{% markdown %}
+
+Cast bundles are simply a tarball of your application, but it is also necessary
+to include a manifest file in order to tell the agent how to manage and run
+your application. Other functionality can be accessed through hook scripts
+which will be executed at various points during an application's life cycle.
+
+1. [Cast Manifest File](#cast_manifest)
+2. [Hooks](#cast_hooks)
+3. [Creating and Uploading Bundles](#cast_bundles)
+
+<h4 id="cast_manifest">Cast Manifest Files</h4>
+
+To initialize a manifest file use cast's [init command](/docs/client/init/),
+specifying the entry file of your application as well as any other desired
+attributes accessible via the init options. You will then be asked a series
+of questions to generate a simple manifest file for your application.
+
+Cast manifest files are documented in full in the [manifest file
+reference](/docs/references/manifest-file/), but a high level overview of the
+more notable attributes is provided here as an introduction.
+
+##### Name
+
+The `name` attribute is an arbitrary name given to your application. This is
+used by the command line in naming bundle files (tarballs of your application),
+but may be used more extensively in the future
+
+##### Description
+
+The `description` attribute is an arbitrary string describing your application.
+
+##### Type
+
+The `type` attribute describes the type of your application and is used by cast
+to determine the best way to start your services. Currently cast supports
+`shell` and `nodejs` types. Applications of the `shell` type have their entry
+file (see below) executed with `/bin/sh` while those of the `nodejs` type have
+their entry file executed by the same NodeJS executable that cast is using.
+
+##### Entry File
+
+The `entry_file` attribute contains the path (relative to the root of the
+application) to the file that will be executed in accordance with the
+application's `type`.
+
+##### Template Files
+
+The `template_files` attribute contains a list of relative paths to files that
+should be processed by cast's [template system](/docs/references/templates/)
+when an instance of the application is created. The most common use for this
+is to generate configuration files based on the variables available to the
+template system.
+
+##### Data Files
+
+The `data_files` attribute contains a list of relative paths to files that
+should be treated as persistent data files and kept in place between upgrades.
+This is done by creating symlinks at the specified paths into corresponding
+locations in a persistent data directory. If the specified paths exist in the
+application bundle they will be copied to the data location when an instance
+of the application is first created. If the specified path does not exist, all
+directories on the path will be created, but the file, if one is specified,
+will not be created, the symlink will just be left dangling.
+
+**Note:** Some applications (especially those which use `rename(2)` when saving
+data files) will overwrite a symlink when they attempt to save to it, instead
+of resolving the link and saving to its target. For this reason it is generally
+recommended that a data *directory* be specified and that applications be
+instructed to save to locations within that directory.
+
+<h4 id="cast_hooks">Hooks</h4>
+
+Hooks allow you to script actions that should occur at various points during
+an application's lifecycle. For example in the [getting started](/start/)
+tutorial we illustrate the use of hooks to compile an application when it is
+being set up.
+
+The [hooks reference](/docs/references/hooks/) describes available hooks in
+detail.
+
+<h4 id="cast_bundles">Creating and Uploading Bundles</h4>
+
+Creating and uploading bundles is easy - just use the [bundles
+create](/docs/client/bundles/create/) and [bundles
+upload](/docs/client/bundles/upload/) commands. For example, to create and
+upload a bundle for Redis we could do the following:
+
+{% syntax bash %}
+# Create a 'bundle' of the application - we have to tell it the version
+~/redis $ cast bundles create v2.2.4-r0
+Manifest validation succeeded, creating a bundle  |
+Bundle created
+
+# Upload the bundle
+~/redis $ cast bundles upload
+Uploading redis@v2.2.4-r0.tar.gz (2668438 bytes)
+100% [=========================================================================]
+Waiting for response...
+Upload Successful
+{% endsyntax %}
+
+Note that the bundle is uploaded to the default remote (see the [remotes
+guide](/docs/guides/remotes-management/#using_remotes) for details).
+
+{% endmarkdown %}
+{% endblock %}
