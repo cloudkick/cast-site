@@ -20,16 +20,22 @@ exiting with any other non-zero exit code signals a failure.
 Hook is also considered to fail (time out) if it does not complete in some
 pre-defined time period (this period depends on the hook type).
 
-### Available Hooks
+1. [Available Hooks](#avaiable_hooks)
+2. [Instance Hooks](#instance_hooks)
+    1. [post_prepare](#post_prepare)
+    2. [pre_version_activate](#pre_version_activate)
+    3. [post_version_activate](#post_version_activate)
+
+<h3 id="avaiable_hooks">Available Hooks</h3>
 
 Here is a list and a description of the currently available hooks.
 
-#### Instance hooks
+<h4 id="instance_hooks">Instance Hooks</h4>
 
 Instance hooks are tied to an instance and must be located in the
 `.cast_project/` directory in your application root. 
 
-##### post_prepare
+<h4 id="post_prepare">post_prepare</h4>
 
 This hook is executed after the instance has been prepared. Instance is
 considered to be prepared after the instance directory has been created, all the
@@ -42,7 +48,7 @@ rendered, but before the actual service has been created.
 
 * `version` - bundle version which has been prepared
 
-#### pre_version_activate
+<h4 id="pre_version_activate">pre_version_activate</h4>
 
 This hook is executed before the instance version has been activated.
 
@@ -53,7 +59,7 @@ This hook is executed before the instance version has been activated.
 * `version` - version which is about to be activated
 * `version_path` - path to the about to be activated version bundle directory
 
-#### post_version_activate
+<h4 id="post_version_activate">post_version_activate</h4>
 
 This hook is executed after the instance version has been activated.
 

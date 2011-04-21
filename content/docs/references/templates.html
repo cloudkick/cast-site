@@ -17,7 +17,13 @@ in all the template files.
 This for example allow you to define some application specific settings which
 can than be accessed in all the templates.
 
-### Context variables
+1. [Context Variables](#context_variables)
+2. [Template Tags](#template_tags)
+    1. [Accessing a variable value](#accessing_variable_value)
+    2. [For loop](#for_loop)
+    3. [If statement](#if_statement)
+
+<h3 id="context_variables">Context Variables</h3>
 
 In each template you have access to the following objects:
 
@@ -39,19 +45,19 @@ In each template you have access to the following objects:
     * `name` - instance name
     * `path` - path to the instance directory
 
-### Template tags
+<h3 id="template_tags">Template tags</h3>
 
 Syntax used in the templates is inspired by the Django templates which means that
 most of the tags have the same name and behave the same as the equivalent Django
 template tags.
 
-### accessing a variable value
+<h4 id="accessing_variable_value">Accessing a variable value</h4>
 
 {% syntax javascript %}
 {% templatetag openbrace %}{% templatetag openbrace %} facts.hostname {% templatetag closebrace %}{% templatetag closebrace %}
 {% endsyntax %}
 
-### for loop
+<h4 id="for_loop">For loop</h4>
 
 {% syntax javascript %}
 {% templatetag openbrace %}% for item in some_array %{% templatetag closebrace %}{% templatetag openbrace %}% endfor %{% templatetag closebrace %}
@@ -64,7 +70,7 @@ In the for loop you also have access to some special variables:
 * `forloop.revcounter` - number of iterations from the end of the loop (1 based)
 * `forloop.revcounter0` - number of iterations from the end of the loop (0  based)
 
-### if statement
+<h4 id="if_statement">If statement</h4>
 
 {% syntax javascript %}
 {% templatetag openbrace %}% if value == 4 %{% templatetag closebrace %}{% templatetag openbrace %}% else if value < 2 %{% templatetag closebrace %}{% templatetag openbrace %}% else %}{% templatetag openbrace %}% endif %{% templatetag closebrace %}

@@ -1,10 +1,10 @@
 ### References
 
-* [Agent](/docs/agent/)
-* [Client](/docs/client/)
-* [REST API](/docs/rest-api/)
-* General concepts
-    * [Manifest file](/docs/references/manifest-file/)
-    * [Templates](/docs/references/templates/)
-    * [Data files](/docs/references/data-files/)
-    * [Hooks](/docs/references/hooks/)
+1. [Agent](/docs/agent/)
+2. [Client](/docs/client/)
+3. [REST API](/docs/rest-api/)
+4. General concepts
+    1. [Manifest file](/docs/references/manifest-file/)
+    2. [Templates](/docs/references/templates/)
+    3. [Data files](/docs/references/data-files/)
+    4. [Hooks](/docs/references/hooks/)
