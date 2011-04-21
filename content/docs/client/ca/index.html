@@ -10,10 +10,10 @@
 {% markdown %}
 Cast offers x509 certificate based authentication of clients. But signing,
 distributing and managing certificates can be pain, especially if you don't
-already have infrastructure in place to do so. To alleviate this, cast includes
+already have infrastructure in place to do so. To alleviate this, Cast includes
 basic certificate management functionality accessible through the "ca" command.
 
-When you add a remote, cast will generate a Certificate Signing Request and
+When you add a remote, Cast will generate a Certificate Signing Request and
 send it to the newly added remote agent. Then, either from the server on which
 the agent resides, or from any other approved client the request can be
 approved for signing. The next time you connect, you will automatically

@@ -9,7 +9,7 @@
 {% block content_body %}
 {% markdown %}
 In this introductory tutorial we're going to show you how to get up and running
-with cast and use it to deploy Redis, a fast and lightweight key-value store.
+with Cast and use it to deploy Redis, a fast and lightweight key-value store.
 
 This tutorial assumes you have sudo access on an Ubuntu server, as well as a
 client OS supported by Cast (pretty much any *nix should do, including OSX),
@@ -21,10 +21,10 @@ but should work on most supported systems with only a few modifications.
 # Install runit
 ~ $ sudo aptitude install runit
 
-# Download the cast agent
+# Download the Cast agent
 ~ $ git clone git://github.com/cloudkick/cast.git
 
-# Create a directory for cast, as well as the services-enabled subdirectory
+# Create a directory for Cast, as well as the services-enabled subdirectory
 ~ $ mkdir -p cast-data/services-enabled
 
 # Create and edit a config file with your favorite editor
@@ -44,7 +44,7 @@ name into the `data_root` path (this path must be absolute).
 Now you just need to start runit and the cast-agent.
 
 {% syntax bash %}
-# This process must be running with an absolute path before cast starts
+# This process must be running with an absolute path before Cast starts
 ~ $ runsvdir /home/russell/cast-data/services-enabled/ &
 
 # Start cast-agent!
@@ -59,21 +59,21 @@ Ok, that wasn't so bad now was it?
 
 ### Client Setup
 
-If your client and server are the same machine you can skip these steps - cast
-automatically adds a remote named `local` that points to the local cast
+If your client and server are the same machine you can skip these steps - Cast
+automatically adds a remote named `local` that points to the local Cast
 instance, and you will be authorized automatically.
 
-If you want to use the cast client on a separate machine however, you'll need
-to install cast and authorize the client.
+If you want to use the Cast client on a separate machine however, you'll need
+to install Cast and authorize the client.
 
 {% syntax bash %}
-# Download cast
+# Download Cast
 ~ $ git clone git://github.com/cloudkick/cast.git
 
-# Add cast to your PATH - you may want to put this in your .bashrc
+# Add Cast to your PATH - you may want to put this in your .bashrc
 ~ $ export PATH="${PATH}:${HOME}/cast/bin/"
 
-# Add your server as a 'remote' in cast
+# Add your server as a 'remote' in Cast
 ~ $ cast remotes add example https://apps.example.com
 Your Email Address: russell@example.com
 Name for this Client: russell-workstation
@@ -144,7 +144,7 @@ hook system to compile Redis when it is deployed. We create
 make
 {% endsyntax %}
 
-By default cast can run two types of applications - shell scripts and Node.js
+By default Cast can run two types of applications - shell scripts and Node.js
 applications. We'll create a shell script to run Redis called `run.sh`:
 
 {% syntax bash %}
@@ -161,7 +161,7 @@ change it:
 dbfilename data/dump.rdb
 {% endsyntax %}
 
-Now we need to generate a cast manifest to tell cast a few details about our
+Now we need to generate a Cast manifest to tell Cast a few details about our
 application.
 
 {% syntax bash %}
