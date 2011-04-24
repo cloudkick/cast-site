@@ -1,0 +1,125 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast API 1.0 - Bundles"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content %}
+{% markdown %}
+
+### GET /1.0/bundles/
+
+List all application bundles on the agent.
+
+#### Responses
+* **200** - Success, bundle list returned.
+* **500** - Error returned.
+
+Example:
+{% syntax bash %}
+~ $ curl http://localhost:49443/1.0/bundles/
+[
+    {
+        "identifier": "redis@v2.2.4",
+        "name": "redis",
+        "version": "v2.2.4"
+    },
+    {
+        "identifier": "redis@v2.3.2-r0",
+        "name": "redis",
+        "version": "v2.3.2-r0"
+    },
+    {
+       "identifier": "fooapp@v1.0",
+       "name": "fooapp",
+       "version": "v1.0"
+    }
+]
+{% endsyntax %}
+
+
+
+
+### GET /1.0/bundles/&lt;name&gt;/
+
+List the file names of all bundles with the specified name. A bundle's 'name'
+corresponds to the 'name' attribute given to the application in its manifest
+file.
+
+#### Path Parameters
+* **name** - The name of the bundle, for example 'redis'
+
+#### Responses
+* **200** - Success, file list returned.
+* **404** - No such bundle, error returned.
+
+#### Example
+{% syntax bash %}
+~ $ curl http://localhost:49443/1.0/bundles/redis/
+[
+    "redis@v2.2.4.tar.gz",
+    "redis@v2.3.2-r0.tar.gz"
+]
+{% endsyntax %}
+
+
+
+
+
+### GET /1.0/bundles/&lt;name&gt;/&lt;name&gt;@&lt;version&gt;.tar.gz
+
+Download a bundle file.
+
+#### Path Parameters
+* **name** - The name of the bundle, for example 'redis'
+* **version** - The version of the bundle, for example 'v2.2.4'
+
+#### Responses
+* **200** - Success, file returned (Content-Type: application/octet-stream)
+* **404** - No such bundle or file.
+
+
+
+
+### PUT /1.0/bundles/&lt;name&gt;/&lt;name&gt;@&lt;version&gt;.tar.gz
+
+Upload a bundle file.
+
+**Note:** This method optionally allows the use of an `x-content-sha1` HTTP
+header or trailer which will compare the SHA1 of the received bundle against
+the provided value and reject the upload in case of a mismatch.
+
+#### Path Parameters
+* **name** - The name of the bundle, for example 'redis'
+* **version** - The version of the bundle, for example 'v2.2.4'
+
+#### Responses
+* **204** - Upload successful, no response body.
+* **400** - Bad file (invalid manifest, SHA1 mismatch, etc), error returned.
+* **404** - No such bundle or file.
+* **500** - Error returned.
+
+
+
+
+### DELETE /1.0/bundles/&lt;name&gt;/&lt;name&gt;@&lt;version&gt;.tar.gz
+
+Remove a bundle file from the agent.
+
+#### Path Parameters
+* **name** - The name of the bundle, for example 'redis'
+* **version** - The version of the bundle, for example 'v2.2.4'
+
+#### URL-Encoded Body Parameters
+* **bundle_type (required)** - One of 'tarball', 'extracted' or 'both'
+  indicating what should be removed.
+
+#### Responses
+* **204** - Success, no body returned.
+* **400** - Invalid or unspecified `bundle_type` parameter, error returned.
+* **404** - No such bundle exists, error returned.
+
+{% endmarkdown %}
+{% endblock %}
