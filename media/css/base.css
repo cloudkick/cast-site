@@ -73,4 +73,5 @@ blockquote { font-size:.8em; line-height:1.4em; color:#fff; font-style:italic; m
 
 .post-date{ float:right; font-style:italic; font-size:.8em; }
 
-#footer { border-top:.1em dotted #777; margin:.55em auto 0; padding:.25em 0 0 0; font-size:.8em; color:#777; text-align: center; }
+#footer { border-top:.1em dotted #777; margin:.55em auto 0; padding:.25em 0 0 0; font-size:.8em; color:#777; text-align: center;
+vertical-align: middle;}
