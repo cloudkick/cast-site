@@ -30,4 +30,8 @@ __--upload__, __-u__
 
 Upload a bundle to the server after it is created
 
+__--force__, __-f__
+
+Overwrite the existing lock file (if present, but not in use)
+
 {% endmarkdown %}

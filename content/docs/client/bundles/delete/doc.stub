@@ -1,0 +1,25 @@
+{% markdown %}
+Delete an existing bundle from the remotes server,
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast bundles delete [OPTIONS] IDENTIFIER 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__IDENTIFIER__
+
+Bundle identifier
+
+
+### Options
+
+__--type__ &lt;type&gt;, __-t__ &lt;type&gt;
+
+A type of bundle to delete. Valid options are: tarball, extracted, both.
+
+{% endmarkdown %}

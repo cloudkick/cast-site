@@ -4,6 +4,7 @@
 
 * [List]({{ page.url }}list)
 * [Create]({{ page.url }}create)
+* [Delete]({{ page.url }}delete)
 * [Validate-manifest]({{ page.url }}validate-manifest)
 * [Upload]({{ page.url }}upload)
 
