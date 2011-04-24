@@ -29,6 +29,10 @@ Bundle specifier in the format [[name@]version]
 
 ### Options
 
+__--enable__
+
+Enable and start the instance service after it has been created
+
 __--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
 
 The remote to use for this command

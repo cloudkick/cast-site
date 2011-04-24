@@ -1,0 +1,29 @@
+{% markdown %}
+Upgrade an existing instance to a new version.
+
+### Synopsis
+
+{% endmarkdown %}
+{% syntax text %}
+cast instances upgrade [OPTIONS] NAME VERSION 
+{% endsyntax %}
+{% markdown %}
+
+### Required Arguments
+
+__NAME__
+
+Instance name
+
+__VERSION__
+
+Bundle version
+
+
+### Options
+
+__--remote__ &lt;remote&gt;, __-r__ &lt;remote&gt;
+
+The remote to use for this command
+
+{% endmarkdown %}

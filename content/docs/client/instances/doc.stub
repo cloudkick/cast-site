@@ -3,6 +3,7 @@
 ### Sub-Commands
 
 * [Create]({{ page.url }}create)
+* [Upgrade]({{ page.url }}upgrade)
 * [Destroy]({{ page.url }}destroy)
 * [List]({{ page.url }}list)
 
