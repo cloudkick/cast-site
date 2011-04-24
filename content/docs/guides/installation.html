@@ -9,25 +9,32 @@
 {% block content_body %}
 {% markdown %}
 
-1. [Install latest stable version with the Cast installer](#script_install)
-2. [Install development version from source](#source_install)
+1. [Requirements](#requirements)
+    1. [Installing runit](#installing_runit)
+    2. [Installing scons](#installing_scons)
+2. [Install latest stable version with the Cast installer](#script_install)
+3. [Install development version from source](#source_install)
 
-<h3 id="script_install">Install latest stable version with the Cast installer</h3>
+<h3 id="requirements">Requirements</h3>
 
-#### Installing runit
+1. [runit][]
+2. [scons][]
+3. [Node.js][] (comes bundled with Cast)
 
-Cast only external dependency which is not included with the distribution
-tarball and needs to be installed manually is [runit](http://smarden.org/runit/).
+<h3 id="installing_runit">Installing runit</h3>
+
+[runit](http://smarden.org/runit/) is a service manager which is used to
+manage and supervise Cast services.
 
 Bellow you can find installation instructions for most of the supported
-operating system.
+platforms.
 
 ##### Ubuntu and Debian
 
 If you are running Ubuntu or Debian you can simply install it using apt-get.
 
 {% syntax bash %}
-sudo apt-get install runit
+~ $ sudo apt-get install runit
 {% endsyntax %}
 
 ##### Mac OS X
@@ -41,33 +48,90 @@ sudo port install runit
 or homebrew.
 
 {% syntax bash %}
-sudo homebrew install runit
+~ $ sudo homebrew install runit
 {% endsyntax %}
+
+<h3 id="installing_scons">Installing Scons</h3>
+
+[Scons](http://www.scons.org/) is a build tool which is used to install Cast.
+
+Scons is also used by Node.js and V8 which means that if you have installed
+Node.js from source it should already be present on your system and you can
+skip this step.
+
+If that is not the case, installation instructions for most of the supported
+operating systems can be found bellow.
+
+##### Ubuntu and Debian
+
+If you are running Ubuntu or Debian you can simply install it using apt-get.
+
+{% syntax bash %}
+~ $ sudo apt-get install scons
+{% endsyntax %}
+
+##### Mac OS X
+
+If you are using Mac OS X you can install it using ports
+
+{% syntax bash %}
+~ $ sudo port install scons
+{% endsyntax %}
+
+or homebrew.
+
+{% syntax bash %}
+~ $ sudo homebrew install scons
+{% endsyntax %}
+
+<h3 id="script_install">Install latest stable version with the Cast installer</h3>
 
 #### Installing Cast
 
-After you have installed runit you need to obtain Cast distribution tarball.
-You can find a link to the latest stable version on the [Downloads](/downloads/) 
+After you have installed all the dependencies you need to obtain Cast distribution
+tarball.
+You can find a link to the latest stable version on the [Downloads](/downloads/)
 page.
 
 ##### Download tarball, unpack it and move to the newly created directory
 
 {% syntax bash %}
-wget http://files.cast-project.org/cast-<version>.tar.gz
-tar -xzvf cast-<version>.tar.gz
-cd cast-<version>
+~ $ wget http://files.cast-project.org/cast-<version>.tar.gz
+~ $ wget http://files.cast-project.org/cast-<version>.tar.gz.md5sum
+~ $ tar -xzvf cast-<version>.tar.gz
+~ $ cd cast-<version>
+{% endsyntax %}
+
+##### Verify the downloaded file MD5 sum
+
+{% syntax bash %}
+~ $ md5sum -c cast-<version>.tar.gz.md5sum
+{% endsyntax %}
+
+If the downloaded file MD5 sum matches the on specified in the .md5sum file, you
+should see a similar message:
+
+{% syntax bash %}
+cast-<version>.tar.gz: OK
 {% endsyntax %}
 
 ##### Install Cast and Node.js using the installer
 
 {% syntax bash %}
-scons install
+~ $ scons install
 {% endsyntax %}
 
 By default Cast and all the dependencies get installed into the `/opt/cast/`
 directory.
 
-If you want to change this path you can use the `--prefix=PATH` option.
+If you want to change this path you can use the `CASTPREFIX` variable.
+
+For example, if you want to install Cast into `/opt/apps` directory, you would run
+the following command:
+
+{% syntax bash %}
+~ $ scons install CASTPREFIX=/opt/apps
+{% endsyntax %}
 
 By default the installer will also compile and install the bundled version of
 Node.js into the Cast prefix (`/opt/cast/`).
@@ -110,9 +174,14 @@ Finally you need Cast itself. Clone it to wherever you want to install it.
 
 {% syntax bash %}
 ~ $ git clone git://github.com/cloudkick/cast.git
+~ $ git checkout develop
 {% endsyntax %}
 
 Then add cast's `bin` directory to your `PATH`.
+
+[runit]: http://smarden.org/runit/
+[scons]: http://www.scons.org/
+[Node.js]: http://www.nodejs.org
 
 {% endmarkdown %}
 {% endblock %}
