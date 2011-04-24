@@ -18,6 +18,15 @@ which means that almost anyone is qualified to contribute.<br /><br />
 If you need more information you are always welcome to join us on IRC or
 start a new thread on our mailing list where we are happy to help you!
 
+### Branching model
+
+For the Cast main repository we follow the `git flow` branching model. You can find
+a good, detailed description of this model in the post titled
+["A successful Git branching model"](http://nvie.com/posts/a-successful-git-branching-model/).
+
+You are also advised to use [git-flow git extensions](https://github.com/nvie/gitflow)
+which make following this branching model easier.
+
 ### Guidelines and rules for contributing
 
 * If you are about to implement a new feature or a bigger change, start a
@@ -27,11 +36,13 @@ discussion on our [mailing list][3] first.
 
 * Create a new branch for every change, even if it is a one line bug fix (git
 makes branching cheap and easy). Branch name should be in the following format:
-`<ticket_id>_branch_name`
+`<ticket_id>_branch_name`.
 
 * Every change must contain [tests](/developer-information/tests/). Test coverage of 90% and above is preferred.
 
 * Stick to the [Coding Guidelines][1].
+
+* Follow [git-flow branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 
 * After you are done with your change make sure that all the tests still pass.
 
