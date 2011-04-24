@@ -1,0 +1,36 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast API 1.0 - Info"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content %}
+{% markdown %}
+
+### GET /1.0/info/
+
+Retrieve information about the cast agent.
+
+#### Responses
+* **200** - Success, info returned.
+
+Example:
+{% syntax bash %}
+~ $ curl http://localhost:49443/1.0/info/
+{
+    "agent_version": "cast-0.1.0-dev",
+    "node_version": "v0.4.5",
+    "hostname": "cast.example.com",
+    "architecture": "x86_64",
+    "os": "10.7.3",
+    "memory": 4294967296,
+    "os_uptime": 4394,
+    "agent_uptime": 20.380000114440918
+}
+{% endsyntax %}
+
+
+{% endmarkdown %}
+{% endblock %}
