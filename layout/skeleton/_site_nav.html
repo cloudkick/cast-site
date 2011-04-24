@@ -6,6 +6,10 @@
     <ul>
         <li{% ifequal page.url "/" %} class="selected" {% endifequal %}>
             <a href="{{site.listing_url}}">Home</a>
+            </li>
+
+        <li{% ifequal page.module.name "news" %} class="selected" {% endifequal %}>
+            <a href="/news/">News</a>
         </li>
 
         <li{% ifequal page.page_name "about" %} class="selected" {% endifequal %}>

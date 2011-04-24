@@ -2,7 +2,7 @@ html { background:#ccc; }
 body { padding:0; margin:0; color:#444; font:1em/1.6em "Helvetica Neue", Helvetica, Arial, sans-serif; text-rendering:optimizeLegibility; }
 
 h1,h2,h3,h4,h5,h6 { color:#fff; text-shadow:#888 0 0 .1em; font-weight:300; padding-bottom:.25em; margin-top:.75em; margin-bottom:.25em; }
-h1 { font-size:3.0em; margin-top:0; }
+h1 { font-size:2.2em; margin-top:0; }
 h2 { font-size:2.2em; }
 h3 { font-size:1.6em; font-weight:400; }
 h4 { font-size:1.4em; font-weight:400; }
@@ -15,7 +15,8 @@ ul,ol { margin-left:1.25em; }
 ul { list-style-type: square; }
 ol { list-style-type: decimal; }
 a { color:#597180; }
-a:hover, 
+h2 a { color:#FFFFFF; text-decoration: none; }
+a:hover,
 .breadcrumbs a:hover,
 #sitenav a { color:#e9ffb2; }
 #sitenav a { text-shadow:#888 0 0 .15em; }
@@ -64,6 +65,7 @@ blockquote { font-size:.8em; line-height:1.4em; color:#fff; font-style:italic; m
 .context-nav a { }
 
 #content-header { padding:0 0 .5em 0; }
+#content-header news { padding-top: 1em; }
 
 .left_column, .right_column { width: 400px; }
 .left_column { float:left; margin-right: 50px; }
