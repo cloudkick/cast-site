@@ -1,0 +1,92 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast API 1.0 - Info"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content %}
+{% markdown %}
+
+### GET /1.0/ca/
+
+List all certificate signing requests on the agent, whether they have been
+signed or not. This should include all requests that have been received but not
+subsequently deleted.
+
+#### Responses
+* **200** - Success, JSON request list returned.
+* **500** - Error returned.
+
+#### Example
+{% syntax bash %}
+~ $ curl http://localhost:49443/1.0/ca/
+[
+    {
+        "hostname": "workstation0",
+        "signed": true,
+        "status": "Approved"
+    },
+    {
+        "hostname": "workstation1",
+        "signed": false,
+        "status": "Awaiting Approval"
+    }
+]
+{% endsyntax %}
+
+
+
+
+
+### PUT /1.0/ca/&lt;request-hostname&gt;/
+
+Upload a PEM encoded X.509 certificate signing request identified by a
+hostname-like string. If a request with the same body and identifier has
+previously been signed the corresponding certificate will be included in the
+response for use by the client in subsequent request.
+
+#### Path Parameters
+* **request-hostname** - a hostname-like identifier for this request
+
+#### Request Body
+A PEM encoded x.509 certificate signing request.
+
+#### Responses
+* **200** - Upload successful, certificate available, request status returned.
+* **202** - Upload successful, certificate pending, request status returned.
+* **400** - Invalid hostname, JSON error returned.
+* **413** - Body too large, JSON error returned.
+* **500** - Error returned.
+
+
+
+
+### DELETE /1.0/ca/&lt;request-hostname&gt;/
+
+Delete a pending certificate signing request from the agent.
+
+#### Path Parameters
+* **request-hostname** - a hostname-like identifier for this request
+
+#### Responses
+* **200** - Success, request status returned.
+* **500** - Error returned.
+
+
+
+
+### POST /1.0/ca/&lt;request-hostname&gt;/sign/
+
+Sign a pending certificate signing request.
+
+#### Path Parameters
+* **request-hostname** - a hostname-like identifier for this request
+
+#### Responses
+* **200** - Success, request status returned.
+* **500** - Error returned.
+
+{% endmarkdown %}
+{% endblock %}
