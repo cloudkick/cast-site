@@ -1,0 +1,84 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast Agent Reference"
+    created: 2011-03-01
+%}
+
+{% block content_body %}
+{% markdown %}
+
+1. [Running the Agent](#agent_exec)
+2. [Configuration](#agent_config)
+
+<h3 id="agent_exec">Running the Agent</h3>
+
+Before the agent can be started, `runsvdir` must be running with an absolute
+path to Cast's `service_dir_enabled` directory.
+
+Then, just run `cast-agent`.
+
+<h3 id="agent_config">Configuration</h3>
+
+The Cast Agent configuration process starts with a default config, then
+overwrites individual options loaded, in order, from:
+
+1. `~/.cast/config.json`
+2. `/etc/cast.conf`
+
+The default configuration is as follows:
+
+{% syntax javascript %}
+var defaults = {
+  /* Cast API Port and IP */
+  'port': 49443,
+  'ip': '0.0.0.0',
+
+  /* Cast Data Root */
+  'data_root': '/opt/cast/',
+
+  /* Subdirectories of the Data Root */
+  'data_dir': 'data',                         // Application data files
+  'service_dir_available': 'services',        // All available services
+  'service_dir_enabled': 'services-enabled',  // All enabled services
+  'bundle_dir': 'bundles',                    // Bundle tarballs
+  'extracted_dir': 'extracted',               // Extracted bundles
+  'app_dir': 'applications',                  // Application instances
+  'ca_dir': 'ca',                             // CA related files
+
+  /* SSL Configuration */
+  'ssl_enabled': true,          // Whether SSL is enabled
+  'certgen_days': 1825,         // Days issued certificates remain valid
+  'certgen_size': 2048,         // Size in bits of generated keys
+  'ssl_cert': 'agent.crt',      // Relative path to agent ssl certificate
+  'ssl_key': 'agent.key',       // Relative path to agent ssl private key
+  'ssl_ca_cert': 'ca.crt',      // Relative path to agent ssl CA certificate
+  'verify_client_cert': true,   // Should client certificates be validated?
+  'warn_unauthorized': false,   // Tell unauthorized clients what went wrong?
+  'ssl_ciphers': 'RC4-SHA:AES128-SHA:AES256-SHA', // Enabled ciphers for SSL
+
+  /* CA Configuration, Relative to ca_dir */
+  'ssl_ca_key': 'ca.key',       // CA key
+  'ssl_ca_serial': 'ca.srl',    // CA serial number file
+  'ssl_ca_outdir': 'out',       // CA output directory
+
+  /* Shared Secret Configuration */
+  'hmac_algorithm': 'sha256',
+  'warn_nosecret': true,
+  'secret': '',
+
+  /* Miscellaneous Configuration */
+  'fileread_buffer_size': (1024 * 64),  // Buffer size when reading files
+  'runsvdir_binary': 'runsvdir',        // runsvdir binary
+  'gzip': 'gzip',                       // gzip binary
+  'tar': null,                          // tar binary
+  'norris_ttl': (60 * 10),              // TTL of norris cache
+  'pretty_json': false,                 // Output pretty JSON
+
+  /* Service Manager Related Configuration */
+  'service_manager': 'runit'
+};
+{% endsyntax %}
+
+{% endmarkdown %}
+{% endblock %}
