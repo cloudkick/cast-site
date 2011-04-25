@@ -1,0 +1,54 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Managing Instances"
+    created: 2011-04-25
+    modified: 2011-04-25
+%}
+
+{% block content_body %}
+{% markdown %}
+
+Instance in Cast represents a single instance of your application.
+Currently each instance is associated with a single service, but in the future
+this will change and you will be able to associate multiple services with your
+instance.
+
+For the rest of this tutorial we will assume the following setup:
+
+Application name: `Node Chat`  
+Bundle identifier: `node_chat`  
+Uploaded bundle version: `1.0.0`  
+Instance name: `node_chat-0`  
+
+1. [Upgrading an instance](#upgrading_instance)
+
+<h3 id="upgrading_instance">Upgrading an Instance</h3>
+
+Lets imagine that you have added some new features to your chat application
+and you want to deploy a new version (1.1.0).
+
+To do this, you need complete the following steps:
+
+#### Create an upload a bundle for a new version
+
+{% syntax bash %}
+~ $ cast bundles create --upload 1.1.0
+{% endsyntax %}
+
+#### Upgrade an existing instance to a new version
+
+{% syntax bash %}
+~ $ cast instances upgrade node_chat-0 1.1.0
+{% endsyntax %}
+
+When the instance upgrade process takes places the following actions will be
+executed:
+
+1. Templates associated with a new instance version will be rendered
+2. Data files associated with new instance version will be resolved
+3. Service associated with an old instance version will be disabled and stopped
+4. Service associated with a new instance version will be enabled and started
+
+{% endmarkdown %}
+{% endblock %}

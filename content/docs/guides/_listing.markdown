@@ -2,3 +2,4 @@
 1. [Installing Cast](/docs/guides/installation/)
 2. [Managing Remotes](/docs/guides/remotes-management/)
 3. [Application Bundles](/docs/guides/bundles/)
+4. [Managing Instances](/docs/guides/instance-management/)
