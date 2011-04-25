@@ -1,0 +1,119 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast API 1.0 - Instances"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content %}
+{% markdown %}
+
+### GET /1.0/instances/
+
+List instances on the agent.
+
+#### Responses
+* **200** - Success, instances list returned.
+* **500** - Error returned.
+
+#### Example
+{% syntax bash %}
+~ $ curl http://localhost:49443/1.0/instances/
+[
+    {
+        "name": "redis0",
+        "bundle_name": "redis",
+        "bundle_version": "v2.3.2-r0"
+    },
+    {
+        "name": "redis1",
+        "bundle_name": "redis",
+        "bundle_version": "v2.3.2-r0"
+    }
+]
+{% endsyntax %}
+
+
+
+
+### GET /1.0/instances/&lt;instance-name&gt;/
+
+Get an instance on the agent.
+
+#### Path Parameters
+* **instance-name** - The name of the instance to retrieve.
+
+#### Responses
+* **200** - Success, instance data returned.
+* **404** - No such instance.
+* **500** - Error returned.
+
+#### Example
+{% syntax bash %}
+~ $ curl http://localhost:49443/1.0/instances/redis0/
+{
+    "name": "redis0",
+    "bundle_name": "redis",
+    "bundle_version": "v2.3.2-r0"
+}
+{% endsyntax %}
+
+
+
+
+### PUT /1.0/instances/&lt;instance-name&gt;/
+
+Create an instance on the agent, based on a bundle specified in the PUT body.
+
+#### Path Parameters
+* **instance-name** - The name of the instance to create.
+
+#### URL-Encoded Body Parameters
+* **bundle_name (required)** - The name of the bundle to use for the instance.
+* **bundle_version (required)** - The version of the bundle to use for the
+  instance.
+* **enable_service** - Pass any string here to enable and start the service as
+  soon as it is created.
+
+#### Responses
+* **200** - Success, result returned.
+* **400** - Invalid request (probably missing body parameters), error returned.
+* **500** - Error returned.
+
+
+
+
+### DELETE /1.0/instances/&lt;instance-name&gt;/
+
+Destroy an instance.
+
+#### Path Parameters
+* **instance-name** - The name of the instance to destroy.
+
+#### Responses
+* **200** - Success, result returned.
+* **404** - No such instance.
+
+
+
+
+### POST /1.0/instances/&lt;instance-name&gt;/upgrade/
+
+Upgrade an instance to a different version of it's bundle. This cannot be used
+to change to a differently named bundle, only a different version with the same
+name.
+
+#### Path Parameters
+* **instance-name** - The name of the instance to upgrade
+
+#### Body Parameters
+* **bundle_version (required)** - The bundle version to upgrade to.
+
+#### Responses
+* **200** - Success, result returned.
+* **400** - Invalid request (probably missing body parameters), error returned.
+* **404** - No such instance.
+
+{% endmarkdown %}
+{% endblock %}
