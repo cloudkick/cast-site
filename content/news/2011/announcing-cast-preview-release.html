@@ -1,0 +1,53 @@
+{% extends "_post.html" %}
+{% load webdesign %}
+
+{% hyde
+    title: Announcing Cast Preview Release
+    created: 2011-04-25
+%}
+
+{% block article %}
+
+{% article %}
+{% excerpt %}
+
+Today we are happy to announce hte first preview release of Cast.
+
+{% endexcerpt %}
+
+One of the more popular categories of cloud services recently has been the
+"Platform as a Service". Services such as Heroku or Google App Engine have a
+lot of benefits - deployment, administration and scaling are a snap.  The
+problem is that such services have all of the well-established drawbacks of
+closed systems: in short, the service users depend on the service providers.
+Users never have full control, but when things go wrong migration away from
+such systems is non-trivial.
+
+We set out to correct this by creating an open service deployment and
+management "Platform" that anyone can run, wherever they like. In this first
+preview release Cast allows you to:
+
+1. Upload application tarballs
+2. Create instances of uploaded applications
+3. Upgrade instances to newer versions of their application
+4. Manage (start, stop, restart, etc) services provided by instances
+
+All of this is performed over a [REST API](/docs/rest-api/) - so while we make
+a command line [client](/docs/client/) available, users are free (and
+encouraged!) to integrate Cast into their systems in any way they see fit.
+
+A key to making this an open and community driven project is using an open
+development process. Cast is distributed under the Apache License, Version 2.0,
+and all development takes place on [Github](https://github.com/cloudkick/cast).
+If this sounds like your sort of thing, we'd love to have you involved!
+
+* [Try Cast](/downloads)
+* [Report a bug](https://github.com/cloudkick/cast/issues)
+* [Share your thoughts](https://groups.google.com/group/cast-dev)
+* Join the discussion in
+  [#cast-project](http://webchat.freenode.net/?channels=cast-project&uio=d4) on
+  irc.freenode.net
+
+{% endarticle %}
+
+{% endblock %}
