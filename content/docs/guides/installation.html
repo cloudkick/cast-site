@@ -12,6 +12,7 @@
 1. [Requirements](#requirements)
     1. [Installing runit](#installing_runit)
     2. [Installing scons](#installing_scons)
+    2. [Installing GNU tar](#installing_gnutar)
 2. [Install latest stable version with the Cast installer](#script_install)
 3. [Install development version from source](#source_install)
 
@@ -19,6 +20,7 @@
 
 1. [runit][]
 2. [scons][]
+3. [GNU tar][] - this is only needed if you are running Mac OS X, FreeBSD or Solaris
 3. [Node.js][] (comes bundled with Cast)
 
 <h3 id="installing_runit">Installing runit</h3>
@@ -48,7 +50,7 @@ sudo port install runit
 or homebrew.
 
 {% syntax bash %}
-~ $ sudo homebrew install runit
+~ $ homebrew install runit
 {% endsyntax %}
 
 <h3 id="installing_scons">Installing Scons</h3>
@@ -81,7 +83,27 @@ If you are using Mac OS X you can install it using ports
 or homebrew.
 
 {% syntax bash %}
-~ $ sudo homebrew install scons
+~ $ homebrew install scons
+{% endsyntax %}
+
+<h3 id="installing_gnutar">Installing GNU tar</h3>
+
+GNU tar is already included in Ubuntu and most of the other Linux distributions
+so you only need to follow this step if you are using Mac OS X, FreeBSD or
+Solaris.
+
+##### Mac OS X
+
+If you are using Mac OS X you can install it using ports
+
+{% syntax bash %}
+~ $ sudo port install gnutar
+{% endsyntax %}
+
+or homebrew.
+
+{% syntax bash %}
+~ $ homebrew install gnutar
 {% endsyntax %}
 
 <h3 id="script_install">Install latest stable version with the Cast installer</h3>
@@ -181,6 +203,7 @@ Then add cast's `bin` directory to your `PATH`.
 
 [runit]: http://smarden.org/runit/
 [scons]: http://www.scons.org/
+[GNU tar]: http://www.gnu.org/software/tar/
 [Node.js]: http://www.nodejs.org
 
 {% endmarkdown %}
