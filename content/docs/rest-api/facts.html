@@ -1,0 +1,42 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast API 1.0 - Facts"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content %}
+{% markdown %}
+
+### GET /1.0/facts/
+
+Retrieve information about the host which will be available when rendering
+[template files](/docs/references/templates/).
+
+#### Responses
+* **200** - Success, info returned.
+
+#### Example
+{% syntax bash %}
+~ $ curl https://localhost:49443/1.0/facts/
+{
+    "node_binary": "/usr/local/bin/node",
+    "node_version": {
+        "major": 0,
+        "minor": 4,
+        "patch": 5
+    },
+    "username": "cast",
+    "arch": "x86_64",
+    "hostname": "cast.example.com",
+    "kernel": "Darwin",
+    "kernel-release": "10.7.3",
+    "gnutar": "/usr/bin/gnutar",
+    "runsvdir_running": true
+}
+{% endsyntax %}
+
+
+{% endmarkdown %}
+{% endblock %}
