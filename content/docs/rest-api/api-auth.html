@@ -1,0 +1,96 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast API Authentication"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content %}
+{% markdown %}
+
+## Cast API Authentication
+
+Cast employs two separate authentication methods: X.509 certificate based
+authentication and shared secret based authentication.
+
+### Certificate-based Authentication
+
+By default SSL is enabled on the cast agent, and it is configured to verify
+client certificates.
+
+To disable client certificate verification, either set `ssl_enabled: false`
+(this will disable SSL entirely) or set `verify_client_cert: false` in
+`config.json` on the Cast Agent.
+
+To make authenticated requests to the agent you must use a certificate signed
+by the CA key corresponding to `ca.crt` on the agent.
+
+#### Retrieving Certificates
+
+While you are free to manage your own certificate infrastructure, the Cast
+Agent also provides a built in certificate authority.
+
+To retrieve a signed certificate from a Cast Agent you can just use the Cast
+Client to [add and approve a remote](/docs/guides/remotes-management/), then
+copy the certificate from `~/.cast/certs/<remote-name>.crt` and key from
+`~/.cast/cast.key`.
+
+If you want to write your own client for the Cast certificate authority,
+check out the [certificate authority API documentation](/docs/rest-api/ca/).
+
+### Shared Key Authentication
+
+Cast's implementation of shared key authentication works creating a sha256
+HMAC using the `secret` config option as a key, then hashing:
+
+1. The HTTP method (ie, 'GET', 'PUT', etc)
+2. The request path
+3. A random string, set as the 'x-cast-nonce' header
+
+Then setting the 'x-cast-signature' header to the base64 value of the hash.
+
+In Node.js you could implement a client as follows:
+
+{% syntax javascript %}
+var http = require('http');
+var crypto = require('crypto');
+
+var SECRET = 'password';
+var METHOD = 'GET';
+var PATH = '/1.0/facts/';
+var NONCE = 'some_random_string';
+
+var hmac = crypto.createHmac('sha256', SECRET);
+
+hmac.update(METHOD);
+hmac.update(PATH);
+hmac.update(NONCE);
+
+var opts = {
+  host: 'localhost',
+  port: '49443',
+  method: METHOD,
+  path: PATH,
+  headers: {
+    'x-cast-nonce': NONCE,
+    'x-cast-signature': hmac.digest('base64')
+  }
+};
+
+http.request(opts, function(res) {
+  var body = '';
+
+  res.setEncoding('utf8');
+  res.on('data', function(chunk) {
+    body += chunk;
+  });
+
+  res.on('end', function() {
+    console.log(body);
+  });
+}).end();
+{% endsyntax %}
+
+{% endmarkdown %}
+{% endblock %}
