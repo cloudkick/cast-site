@@ -10,7 +10,7 @@
 {% block content_body %}
 {% endblock %}
 
-{% if page.updated %}
-<div class="last-modified">Last modified: {{ page.updated|date }}</div>
+{% if page.modified %}
+<div class="last-modified">Last modified: {{ page.modified|date }}</div>
 {% endif %}
 {% endblock %}
