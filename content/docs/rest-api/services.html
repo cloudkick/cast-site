@@ -1,0 +1,141 @@
+{% extends "skeleton/_body.html" %}
+
+{%hyde
+    title: "Cast API 1.0 - Services"
+    created: 2011-04-18
+    modified: 2011-04-18
+%}
+
+{% block content %}
+{% markdown %}
+
+### GET /1.0/services/
+
+List all services on the agent.
+
+#### Responses
+* **200** - Success, service list returned.
+* **500** - Error returned.
+
+#### Example
+{% syntax bash %}
+~ $ curl http://localhost:49443/1.0/services/
+[
+    {
+        "name": "redis0@v2.3.2-r0",
+        "enabled": true,
+        "status": {
+            "time": 1303690228,
+            "pid": 523,
+            "state": "running"
+        }
+    },
+    {
+        "name": "redis1@v2.3.2-r0",
+        "enabled": true,
+        "status": {
+            "time": 1303690335,
+            "pid": -1,
+            "state": "down"
+        }
+    }
+]
+{% endsyntax %}
+
+
+
+
+### GET /1.0/services/&lt;service-identifier&gt;/
+
+Retrieve a single service on the agent.
+
+#### Path Parameters
+* **service-identifier** - The identifier of the service in the form
+  `name@version`.
+
+#### Responses
+* **200** - Success, service info returned.
+* **404** - Service not found.
+* **500** - Error returned.
+
+#### Example
+{% syntax bash %}
+~ $ curl http://localhost:49443/1.0/services/redis0@v2.3.2-r0/
+{
+    "name": "redis0@v2.3.2-r0",
+    "enabled": true,
+    "status": {
+        "time": 1303690335,
+        "pid": -1,
+        "state": "down"
+    }
+}
+{% endsyntax %}
+
+
+
+
+### GET /1.0/services/&lt;service-identifier&gt;/tail/&lt;bytes&gt;/[follow/]
+
+Retrieve the last `bytes` bytes from the identified service's log. By default
+this just returns the requested data then ends the response body, but you can
+append an optional `follow/` to the path and receive additional data as it is
+written to the log.  This is like calling `tail -F` on the log.
+
+#### Path Parameters
+* **service-identifier** - The identifier of the service in the form
+  `name@version`.
+* **bytes** - The number of bytes to initially retrieve from the log file.
+
+#### Responses
+* **200** - Success, log returned in body (Content-Type: text/plain)
+* **404** - Service not found.
+
+#### Example
+{% syntax bash %}
+~ $ curl http://localhost:49443/1.0/services/redis0@v2.3.2-r0/tail/1024/follow/
+slaves), 922048 bytes in use
+2011-04-25_00:11:38.61602 [523] 24 Apr 17:11:38 - 0 clients connected (0 slaves), 922048 bytes in use
+2011-04-25_00:11:43.62374 [523] 24 Apr 17:11:43 - 0 clients connected (0 slaves), 922048 bytes in use
+2011-04-25_00:11:48.63079 [523] 24 Apr 17:11:48 - 0 clients connected (0 slaves), 922048 bytes in use
+2011-04-25_00:11:53.63772 [523] 24 Apr 17:11:53 - 0 clients connected (0 slaves), 922048 bytes in use
+2011-04-25_00:11:58.64484 [523] 24 Apr 17:11:58 - 0 clients connected (0 slaves), 922048 bytes in use
+2011-04-25_00:12:03.65236 [523] 24 Apr 17:12:03 - 0 clients connected (0 slaves), 922048 bytes in use
+2011-04-25_00:12:04.21762 [523] 24 Apr 17:12:04 # Received SIGTERM, scheduling shutdown...
+2011-04-25_00:12:04.25279 [523] 24 Apr 17:12:04 # User requested shutdown, saving DB...
+2011-04-25_00:12:04.25348 [523] 24 Apr 17:12:04 * DB saved on disk
+2011-04-25_00:12:04.25350 [523] 24 Apr 17:12:04 # Server exit now, bye bye...
+2011-04-25_00:12:04.25713 Service redis0@v2.3.2-r0 stopped
+^C
+{% endsyntax %}
+
+
+
+
+### PUT /1.0/services/&lt;service-identifier&gt;/&lt;action&gt;/
+
+Perform the specified action (enable, disable, start, stop or restart) on the
+identified service.
+
+#### Path Parameters
+* **service-identifier** - The identifier of the service in the form
+  `name@version`.
+* **action** - One of `enable`, `disable`, `start`, `stop` or `restart`.
+
+#### Responses
+* **200** - Success, action object returned.
+* **404** - No such service.
+* **500** - Error returned.
+
+#### Example
+{% syntax bash %}
+~ $ curl -X PUT http://localhost:49443/1.0/services/redis0@v2.3.2-r0/start/
+{
+    "service": "redis0@v2.3.2-r0",
+    "method": "start",
+    "result": "success"
+}
+{% endsyntax %}
+
+{% endmarkdown %}
+{% endblock %}
