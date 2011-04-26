@@ -2,9 +2,9 @@ html { background:#ccc; }
 body { padding:0; margin:0; color:#444; font:1em/1.6em "Helvetica Neue", Helvetica, Arial, sans-serif; text-rendering:optimizeLegibility; }
 
 h1,h2,h3,h4,h5,h6 { color:#fff; text-shadow:#888 0 0 .1em; font-weight:300; padding-bottom:.25em; margin-top:.75em; margin-bottom:.25em; }
-h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {text-decoration:none; }
-h1 { font-size:2.2em; margin-top:0; }
-h2 { font-size:2.2em; }
+h1 a,h2 a,h3 a,h4 a,h5 a,h6 a { text-decoration:none; }
+h1 { font-size:3.2em; margin-top:0; }
+h2 { font-size:2.2em; margin-top:.5em; }
 h3 { font-size:1.6em; font-weight:400; }
 h4 { font-size:1.4em; font-weight:400; }
 h5 { font-size:1.2em; font-weight:400; }
@@ -46,7 +46,7 @@ div.hr { height:1px; background:#ddd; border:1px solid #bbb; border-width:1px 0 
 
 #header { margin-bottom:.5em; }
 #header a { text-decoration:none; padding:0; margin:0; }
-#site-logo { margin-bottom:-0.075em; }
+#site-logo { margin-bottom:-0.065em; }
 
 #content img { border:none; margin:25px 0 6px 0; }
 #content { width:900px; }
@@ -67,7 +67,7 @@ div.hr { height:1px; background:#ddd; border:1px solid #bbb; border-width:1px 0 
 .context-nav { position:absolute; right:0; }
 .context-nav a { }
 
-#content-header { padding:0 0 .5em 0; }
+#content-header { }
 #content-header news { padding-top:1em; }
 
 #footer { font-size:.8em; color:#777; text-align:center; vertical-align:middle;}
