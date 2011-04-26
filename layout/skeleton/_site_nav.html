@@ -3,6 +3,7 @@
 {% block all %}
 
 <div id="sitenav">
+  <div class="hr"></div>
     <ul>
         <li{% ifequal page.url "/" %} class="selected" {% endifequal %}>
             <a href="{{site.listing_url}}">Home</a>
@@ -36,6 +37,7 @@
             <a href="/sitemap/">Sitemap</a>
         </li>
     </ul>
+  <div class="hr"></div>
 </div>
 
 {% endblock %}
