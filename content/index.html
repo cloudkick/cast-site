@@ -18,12 +18,9 @@
 </div>
 
 <div class="right_column">
-  <h3>Cast in Action</h3>
+  <h3>One-line install</h3>
 {% syntax bash %}
-$ cast instances create staging
-Instance 'staging' created
-$ cast services start redis@1.0.0
-Service 'redis@1.0.0' has been started
+curl http://files.cast-project.org/install.sh | sh
 {% endsyntax %}
   <a class="css-button" href="/start/">See Cast in Action</a>
   <a class="css-button dark" href="/downloads/">Download Cast</a>
