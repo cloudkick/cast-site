@@ -38,7 +38,7 @@ pre { padding:.75em; line-height:1.4em; }
 strong { font-weight:bold; }
 em { font-style:italic; }
 blockquote { font-size:.8em; line-height:1.4em; color:#fff; font-style:italic; margin:.5em 2em .5em 1em; padding:0 0 0 1em; border-left:.25em solid #ddd; }
-hr { margin:1em 0; }
+hr { margin:1.25em 0; }
 hr,
 div.hr { height:1px; background:#ddd; border:1px solid #bbb; border-width:1px 0 0 0; } 
 
@@ -79,9 +79,9 @@ div.hr { height:1px; background:#ddd; border:1px solid #bbb; border-width:1px 0 
 .floatR { float:right; }
 .floatL { float:left; }
 
-.left_column, .right_column { width:400px; }
-.left_column { float:left; margin-right:50px; }
-.right_column { float:right; margin-left:50px; }
+.left_column, .right_column { width:425px; }
+.left_column { float:left; margin-right:25px; }
+.right_column { float:right; margin-left:25px; }
 
 .post-date { float:right; font-style:italic; font-size:.8em; color:#eee; }
 
@@ -90,14 +90,20 @@ img.center { border:1px solid #aaa; -webkit-box-shadow:#777 0 0 .5em; -moz-box-s
 .imgdesc { font-size:90%; font-weight:bold; }
 
 .css-button { 
-  display:inline-block; margin:1em 0; padding:.5em 1.25em; border-radius:.5em; -moz-border-radius:.5em; -webkit-box-shadow:#777 0 0 .25em; -moz-box-shadow:#777 0 0 .25em;
+  display:inline-block; margin:1em .5em 0 0; padding:.5em 1em; border-radius:.5em; -moz-border-radius:.5em; -webkit-box-shadow:#777 0 0 .25em; -moz-box-shadow:#777 0 0 .25em;
   text-decoration:none;
   font-weight:400;
   font-size:1.25em;
+  background-color: #fff; 
+  background-image: -moz-linear-gradient(#fff, #ddd);
+  background-image: -webkit-linear-gradient(#fff, #ddd); 
+  background-image: -o-linear-gradient(#fff, #ddd);
+}
+.css-button.dark { 
   background-color: #eee; 
-  background-image: -moz-linear-gradient(#fff, #ccc);
-  background-image: -webkit-linear-gradient(#fff, #ccc); 
-  background-image: -o-linear-gradient(#fff, #ccc);
+  background-image: -moz-linear-gradient(#eee, #ccc);
+  background-image: -webkit-linear-gradient(#eee, #ccc); 
+  background-image: -o-linear-gradient(#eee, #ccc);
 }
 .css-button:hover { color:#35586e;
   background-color: #fff; 
