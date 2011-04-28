@@ -9,17 +9,17 @@
 
 {% block content_md %}
 
-Cast is an open-source, [Apache 2.0][] licensed framework for deploying,
-upgrading and managing application and services. Think of it as your very own
+Cast is an open-source, [Apache 2.0][]-licensed framework for deploying,
+upgrading, and managing applications and services. Think of it as your very own,
 flexible "platform as a service" that you can run wherever and however you
 want.
 
-The framework is API-driven which means that every functionality is exposed
-though a well designed, JSON based REST API.
+The framework is API-driven, which means that every functionality is exposed
+though a well-designed, JSON-based REST API.
 
 ### What Does Cast Do?
 
-By running the Cast agent on your server you can:
+By running the Cast agent on your server, you can:
 
 1. Upload tarballs of your application
 2. Deploy (and upgrade) instances of your application
@@ -30,33 +30,32 @@ direcly through the Cast Agent's HTTP API.
 
 ### Goals
 
-Our goal is to build a "smart" API-driven framework which allows users to easily
-deploy, manage, upgrade and automatically scale their applications and services.
+Our goal is to build a "smart" API-driven framework that allows users to easily
+deploy, manage, upgrade, and automatically scale their applications and services.
 
 We plan for Cast to:
 
-* Allow applications to scale and configure themselves.
-* Provide a language and techology agnostic service platform.
-* Be easy as easy to use for huge applications on hundreds of servers as it is
-  for tiny ones on one server.
+* Allow applications to scale and configure themselves
+* Provide a language and techology agnostic service platform
+* Be as easy to use for huge applications on hundreds of servers as it is
+  for tiny ones on one server
 * Be adapted for a wide range of applications through an open and
-  community-oriented development process.
+  community-oriented development process
 
 <a href="/media/images/architecture/cast_vision.png"><img class="center"
   src="/media/images/architecture/cast_vision_thumb.png" /></a>
 <div class="center imgdesc">Cast vision</div>
 
-In short, we want to provide a powerful and solid foundation which people can
-use for managing their applications or for building their services on top of
-it.
+In short, we want to provide a powerful and solid foundation that people can
+use for managing their applications or for building their services on top of.
 
-The services built on top of the Cast framework can range from simple web
-interfaces for managing the agents to fully fledged application hosting
-services such as Heroku.
+Services built on top of the Cast framework can range from simple web
+interfaces for managing agents to full-fledged application hosting
+services like Heroku.
 
 ### Architecture and technologies
 
-Cast is composed of two different parts - an agent and a client.
+Cast is composed of two different parts: an agent and a client.
 
 <a href="/media/images/architecture/cast_architecture_version_preview.png">
 <img class="center" src="/media/images/architecture/cast_architecture_version_preview_thumb.png" /></a>
@@ -78,11 +77,11 @@ clients or other agents:
 #### Client
 
 The Cast Client is usually installed on your development machine or your server
-and provides a command line interface for interacting with Cast Agents.
+and provides a command-line interface for interacting with Cast Agents.
 
 For your convenience, the default package includes a reference client
 implementation written in Node.js, but because the agent exposes all the
-functionality through a JSON bases REST API this means that you can build your
+functionality through a JSON-based REST API, you can build your
 own custom client or a wrapper around an existing client written in your
 favorite programming language.
 
