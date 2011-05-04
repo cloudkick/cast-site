@@ -1,0 +1,19 @@
+{% extends "skeleton/_root.html" %}
+
+{% block content_header %}
+{% endblock %}
+
+{% block all %}
+
+{% for node in site.walk %}
+    {% ifequal node.name "news" %}
+    {% for page in node.walk_resources %}
+        {% ifnotequal page.name "index.html" %}
+        <p><a href="{{page.url}}">{% with page.name_without_extension|remove_date_prefix|unslugify as default_title %}
+        {{page.title|default_if_none:default_title }}{% endwith %}</a> <span class="news-date">({{ page.created|date:"D d M Y"}})</span></p>
+    {% endifnotequal %}
+    {% endfor %}
+    {% endifequal %}
+{% endfor %}
+
+{% endblock %}

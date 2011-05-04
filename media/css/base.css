@@ -49,8 +49,10 @@ div.hr { height:1px; background:#ddd; border:1px solid #bbb; border-width:1px 0 
 #header a { text-decoration:none; padding:0; margin:0; }
 #site-logo { margin-bottom:-0.065em; }
 
-#content img { border:none; margin:25px 0 6px 0; }
+#content p img { border:none; margin:25px 0 6px 0; }
 #content { width:900px; }
+
+span.news-date { font-size: 0.93em; font-style: italic;}
 
 #sitenav { margin:0 0 .25em 0; font-weight:600; padding-bottom:.05em; text-align:center; }
 #sitenav ul { list-style-type:none; margin:0; }
