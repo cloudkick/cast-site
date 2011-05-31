@@ -17,23 +17,17 @@ but should work on most supported systems with only a few modifications.
 
 ### Server Setup
 
+First you'll need to [install Cast on your server](/docs/guides/installation/).
+
+Next, create and edit a config file with your favorite editor:
+
 {% syntax bash %}
-# Install runit
-~ $ sudo aptitude install runit
-
-# Download the Cast agent
-~ $ git clone git://github.com/cloudkick/cast.git
-
-# Create a directory for Cast, as well as the services-enabled subdirectory
-~ $ mkdir -p cast-data/services-enabled
-
-# Create and edit a config file with your favorite editor
 ~ $ mkdir ~/.cast
 ~ $ vim ~/.cast/config.json
 {% endsyntax %}
 
-Now edit the config file to look something like this, substituting your user
-name into the `data_root` path (this path must be absolute).
+Edit the config file to look something like this, substituting your user name
+into the `data_root` path (this path must be absolute).
 
 {% syntax javascript %}
 {
@@ -64,15 +58,9 @@ automatically adds a remote named `local` that points to the local Cast
 instance, and you will be authorized automatically.
 
 If you want to use the Cast client on a separate machine however, you'll need
-to install Cast and authorize the client.
+to [install Cast](/docs/guides/installation/) then authorize the client:
 
 {% syntax bash %}
-# Download Cast
-~ $ git clone git://github.com/cloudkick/cast.git
-
-# Add Cast to your PATH - you may want to put this in your .bashrc
-~ $ export PATH="${PATH}:${HOME}/cast/bin/"
-
 # Add your server as a 'remote' in Cast
 ~ $ cast remotes add example https://apps.example.com
 Your Email Address: russell@example.com
