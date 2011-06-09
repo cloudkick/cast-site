@@ -11,8 +11,11 @@
 
 1. [Requirements](#requirements)
     1. [Installing runit](#installing_runit)
+        1. [Ubuntu and Debian](#installing_runit_ubuntu_and_debian)
+        2. [Fedora and CentOS](#installing_runit_fedora_and_centos)
+        3. [Mac OS X](#installing_runit_osx)
     2. [Installing scons](#installing_scons)
-    2. [Installing GNU tar](#installing_gnutar)
+    3. [Installing GNU tar](#installing_gnutar)
 2. [Install latest stable version with the Cast installer](#script_install)
 3. [Install development version from source](#source_install)
 
@@ -31,7 +34,7 @@ manage and supervise Cast services.
 Bellow you can find installation instructions for most of the supported
 platforms.
 
-##### Ubuntu and Debian
+<h4 id="installing_runit_ubuntu_and_debian">Ubuntu and Debian</h4>
 
 If you are running Ubuntu or Debian you can simply install it using apt-get.
 
@@ -39,8 +42,7 @@ If you are running Ubuntu or Debian you can simply install it using apt-get.
 ~ $ sudo apt-get install runit
 {% endsyntax %}
 
-
-#### Fedora and CentOS
+<h4 id="installing_runit_fedora_and_centos"> Fedora and CentOS</h4>
 
 On Fedora and CentOS you need to install the following packages so you will be
 able to compile runit:
@@ -49,9 +51,9 @@ able to compile runit:
 glibc-headers glib-static glibc-devel glibc.i686
 {% endsyntax %}
 
-You need **glibc.i686** even if you are running 64 bit kernel.
+You need **glibc.i686** package even if you are running 64 bit kernel.
 
-##### Mac OS X
+<h4 id="installing_runit_osx">Mac OS X</h4>
 
 If you are using Mac OS X you can install it using ports
 
@@ -76,7 +78,7 @@ skip this step.
 If that is not the case, installation instructions for most of the supported
 operating systems can be found bellow.
 
-##### Ubuntu and Debian
+#### Ubuntu and Debian
 
 If you are running Ubuntu or Debian you can simply install it using apt-get.
 
@@ -84,7 +86,7 @@ If you are running Ubuntu or Debian you can simply install it using apt-get.
 ~ $ sudo apt-get install scons
 {% endsyntax %}
 
-##### Mac OS X
+#### Mac OS X
 
 If you are using Mac OS X you can install it using ports
 
@@ -104,7 +106,7 @@ GNU tar is already included in Ubuntu and most of the other Linux distributions
 so you only need to follow this step if you are using Mac OS X, FreeBSD or
 Solaris.
 
-##### Mac OS X
+#### Mac OS X
 
 If you are using Mac OS X you can install it using ports
 
