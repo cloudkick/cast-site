@@ -14,6 +14,7 @@
         1. [Ubuntu and Debian](#installing_runit_ubuntu_and_debian)
         2. [Fedora and CentOS](#installing_runit_fedora_and_centos)
         3. [Mac OS X](#installing_runit_osx)
+        4. [FreeBSD](#installing_runit_freebsd)
     2. [Installing scons](#installing_scons)
     3. [Installing GNU tar](#installing_gnutar)
 2. [Install latest stable version with the Cast installer](#script_install)
@@ -58,13 +59,22 @@ You need **glibc.i686** package even if you are running 64 bit kernel.
 If you are using Mac OS X you can install it using ports
 
 {% syntax bash %}
-sudo port install runit
+~ $ sudo port install runit
 {% endsyntax %}
 
 or homebrew.
 
 {% syntax bash %}
 ~ $ homebrew install runit
+{% endsyntax %}
+
+<h4 id="installing_runit_freebsd">FreeBSD</h4>
+
+On FreeBSD you can install it using ports
+
+{% syntax bash %}
+~ $ cd /usr/ports/sysutils/runit
+~ $ make install clean
 {% endsyntax %}
 
 <h3 id="installing_scons">Installing Scons</h3>
