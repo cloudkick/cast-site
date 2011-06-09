@@ -39,6 +39,18 @@ If you are running Ubuntu or Debian you can simply install it using apt-get.
 ~ $ sudo apt-get install runit
 {% endsyntax %}
 
+
+#### Fedora and CentOS
+
+On Fedora and CentOS you need to install the following packages so you will be
+able to compile runit:
+
+{% syntax bash %}
+glibc-headers glib-static glibc-devel glibc.i686
+{% endsyntax %}
+
+You need **glibc.i686** even if you are running 64 bit kernel.
+
 ##### Mac OS X
 
 If you are using Mac OS X you can install it using ports
