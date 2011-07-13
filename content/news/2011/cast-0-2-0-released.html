@@ -1,0 +1,43 @@
+{% extends "_post.html" %}
+{% load webdesign %}
+
+{% hyde
+    title: Cast 0.2.0 Released
+    created: 2011-07-13
+%}
+
+{% block article %}
+
+{% article %}
+{% excerpt %}
+
+Cast 0.2.0 is now out the door, and brings a number of features and
+improvements to both the client and the agent.
+
+{% endexcerpt %}
+
+On the agent, the two main improvements are a job queuing system and an
+experimental plugin interface. The job queueing system brings improved locking,
+per-resource serialized asynchronous task execution.
+
+The plugin system allows the creation of plugins to integrate Cast with
+existing infrastructure such as GitHub or BuildBot.
+
+The 0.2.0 release also includes numerous improvements to the command line
+client. The most notable of these is the new 'deploy' command which simplifies
+use of Cast - running the deploy command can automatically generate the Cast
+manifest, create a bundle from your application upload it to the agent and
+create and enable an instance. Subsequent calls to 'deploy' will, if the
+version number has changed, create a new bundle, upload it, and upgrade the
+running instance of the code.
+
+The client also includes improved error handling. Errors now indicate whether
+they originated on the client or server, and when the client is run with
+"--debug" errors include a stack trace. If the agent is run with "--debug" as
+well, it can return stack traces to the client for display.
+
+* [Get Cast 0.2.0](http://cast-project.org./downloads/)
+
+{% endarticle %}
+
+{% endblock %}
