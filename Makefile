@@ -7,6 +7,8 @@ setup: hyde/requirements.txt
 build:
 	rm -rf deploy
 	python hyde/hyde.py -g -s . -d deploy
+	mkdir deploy/other/
+	cp KEYS deploy/other/KEYS
 
 run:
 	python hyde/hyde.py -w -s .
